@@ -1,0 +1,24 @@
+{
+    "Actor" : {
+
+    },
+    "Items" : {
+        "types" : [
+            "weapon"
+        ],
+        "templates":{
+            "itemDescription":{
+                "description": "",
+                "stat" : ["Force", "Vitalité", "Ténacité", "Agilité", "Habileté", "Discrétion", "Logique", "Concentration", "Culture", "Jugement", "Perspicacité", "Volonté", "Charme", "Influence", "Tromperie", "Vitesse", "PV", "Adversité"]
+
+            }
+        },
+        "weapon":{
+            "attackWith": ["Force", "Vitalité", "Ténacité", "Agilité", "Habileté", "Discrétion", "Logique", "Concentration", "Culture", "Jugement", "Perspicacité", "Volonté", "Charme", "Influence", "Tromperie", "Vitesse", "PV", "Adversité"],
+            "damage":0,
+            "templates": ["itemDescription", "stat"],
+            "range": 0,
+            "damageType": ["Contendant", "Perçant", "Coupant", "Poison", "Foudre", "Feu", "Froid", "Psychique", "Magique", "Néant"]
+        }
+    }
+}
