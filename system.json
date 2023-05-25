@@ -1,22 +1,23 @@
 {
-    "name" : "bariandVTT",
-    "title" : "Contes de Bariand",
-    "description" : "Un système perso",
-    "author" : "Ted",
-    "version" : 0.01,
-    "minimumCoreVersion" : "0.6.4?????",
-    "compatibleCoreVersion" : "O.6.4????",
-    "esmodules": [
-        "bariandVTT.js"
-    ],
-    "styles": [
-        "bariandVTT.css"
-    ],
-    "packs" : [
-
-    ],
-    "gridDistance": 5,
-    "gridUnits": "ft",
-    "primaryTokenAttribute": "wounds",
-    "initiative": "1d20 + @dex"
+  "name": "bariand",
+  "title": "Contes de Bariand",
+  "description": "Un système perso",
+  "author": "Ted",
+  "version": 0.01,
+  "minimumCoreVersion": "10.291",
+  "compatibleCoreVersion": "10.291",
+  "esmodules": ["bariand.js"],
+  "styles": ["bariand.css"],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    }
+  ],
+  "gridDistance": 5,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "wounds",
+  "initiative": "1d20 + @dex"
 }

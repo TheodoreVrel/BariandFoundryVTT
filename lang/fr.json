@@ -1,0 +1,37 @@
+{
+  "bariand": {
+    "stat": {
+      "none": "",
+      "strength": "Force",
+      "vitality": "Vitalité",
+      "tenacity": "Ténacité",
+      "agility": "Agilité",
+      "handDex": "Habileté",
+      "stealth": "Discrétion",
+      "logic": "Logique",
+      "concentration": "Concentration",
+      "culture": "Culture",
+      "insight": "Jugement",
+      "perception": "Perspicacité",
+      "will": "Volonté",
+      "charm": "Charme",
+      "influence": "Influence",
+      "deception": "Tromperie",
+      "speed": "Vitesse",
+      "hp": "PV",
+      "adversity": "Adversité"
+    },
+    "damageType": {
+      "bludgeoning": "Contendant",
+      "piercing": "Perçant",
+      "slashing": "Coupant",
+      "poinson": "Poison",
+      "electric": "Foudre",
+      "fire": "Feu",
+      "cold": "Froid",
+      "psychic": "Psychique",
+      "arcane": "Arcaniques",
+      "void": "Néant"
+    }
+  }
+}
