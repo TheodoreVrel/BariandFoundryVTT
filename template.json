@@ -1,5 +1,20 @@
 {
-  "Actor": {},
+  "Actor": {
+    "types": ["1", "2"],
+    "templates": {
+      "itemDescription": {
+        "description": ""
+      }
+    },
+    "arme": {
+      "damage": 0,
+      "templates": ["itemDescription"],
+      "range": 0
+    },
+    "equipement": {
+      "templates": ["itemDescription"]
+    }
+  },
   "Item": {
     "types": ["arme", "equipement"],
     "templates": {
