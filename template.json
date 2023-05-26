@@ -2,12 +2,41 @@
   "Actor": {
     "types": ["personnage"],
     "personnage": {
-      "niveau": 3,
+      "niveau": 1,
       "pv": 0,
       "mana": 0,
       "resist": 0,
       "advers": 0,
-      "vitesse": 0
+      "vitesse": 0,
+
+      "vigor": 0,
+      "strength": 0,
+      "tenacity": 0,
+      "vitality": 0,
+
+      "dexterity": 0,
+      "agility": 0,
+      "handDex": 0,
+      "stealth": 0,
+
+      "intelligence": 0,
+      "logic": 0,
+      "concentration": 0,
+      "culture": 0,
+
+      "wisdom": 0,
+      "perception": 0,
+      "insight": 0,
+      "will": 0,
+
+      "charisma": 0,
+      "charm": 0,
+      "influence": 0,
+      "deception": 0,
+
+      "skill1": "",
+      "skill2": "",
+      "skill3": ""
     }
   },
   "Item": {

@@ -1,0 +1,32 @@
+.sheet .talents {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: inline-block;
+  flex-direction: row;
+  position: relative;
+  background-color: #191813;
+  color: whitesmoke;
+  height: 125px;
+  width: 257px;
+}
+.sheet .stat {
+  width: 150;
+  display: inline-block;
+  flex-direction: row;
+  position: relative;
+}
+.sheet .vig {
+  background-color: #ff5733;
+}
+.sheet .dex {
+  background-color: #169818;
+}
+.sheet .int {
+  background-color: #9c1eb5;
+}
+.sheet .wis {
+  background-color: #252ab6;
+}
+.sheet .cha {
+  background-color: #ffad33;
+}
