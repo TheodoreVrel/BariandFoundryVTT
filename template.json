@@ -1,18 +1,13 @@
 {
   "Actor": {
-    "types": ["1", "2"],
-    "templates": {
-      "itemDescription": {
-        "description": ""
-      }
-    },
-    "arme": {
-      "damage": 0,
-      "templates": ["itemDescription"],
-      "range": 0
-    },
-    "equipement": {
-      "templates": ["itemDescription"]
+    "types": ["personnage"],
+    "personnage": {
+      "niveau": 3,
+      "pv": 0,
+      "mana": 0,
+      "resist": 0,
+      "advers": 0,
+      "vitesse": 0
     }
   },
   "Item": {

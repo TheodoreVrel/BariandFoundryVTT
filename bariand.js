@@ -9,7 +9,7 @@ Hooks.once("init", function () {
 
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("bariand", BariandActorSheet, {
-    types: ["1"],
+    types: ["personnage"],
     makeDefault: true,
   });
   Items.unregisterSheet("core", ItemSheet);

@@ -3,11 +3,11 @@ export default class BariandActorSheet extends ActorSheet {
     return `systems/bariand/templates/sheets/bariand-actor-sheet.html`;
   }
 
-  // getData() {
-  //   const data = super.getData();
+  getData() {
+    const data = super.getData();
 
-  //   data.config = CONFIG.bariand;
-  //   console.log({ data });
-  //   return data;
-  // }
+    data.config = CONFIG.bariand;
+    console.log({ data });
+    return data;
+  }
 }
