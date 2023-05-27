@@ -1,32 +1,129 @@
-.sheet .talents {
-  margin-top: 10px;
-  margin-bottom: 20px;
+.sheet p {
+  margin: 0;
+}
+.sheet input {
+  text-align: center;
+}
+
+.sheet .sheet-body {
+  display: flex;
+  flex-direction: column;
+  color: antiquewhite;
+  background-color: #494843;
+  padding-left: 5px;
+}
+.sheet .all-stats {
+  display: flex;
+  gap: 50px;
+  margin: 20px;
+}
+.sheet .sub-stats {
+  display: flex;
+  flex-direction: column;
+}
+.sheet .sub-stats-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: antiquewhite;
+  background-color: black;
+  padding: 6px 12px;
+}
+.sheet .sub-stats-title p {
+  font-weight: bold;
+  padding-right: 8px;
+}
+.sheet .sub-stats-title input {
+  color: antiquewhite;
+  background-color: black;
+  width: 22px;
+  align-self: flex-end;
+}
+.sheet .stats-grid {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 110px 40px;
+  grid-template-rows: repeat(3, 25px);
+  grid-gap: 2px 0;
+  margin-bottom: 5px;
+  padding: 5px;
+  border: 1px solid black;
+  color: black;
+  background-color: antiquewhite;
+}
+.sheet .stat {
+  display: inline-block;
+  flex-direction: row;
+  position: flex;
+}
+
+.sheet .main-stats {
+  display: grid;
+  grid-gap: 20px 0;
+  grid-template-columns: 120px 80px;
+  grid-template-rows: repeat(6, 70px);
+}
+.sheet .main-stats .label {
+  display: flex;
+  color: antiquewhite;
+  background-color: black;
+}
+.sheet .main-stats p {
+  margin: auto;
+  font-size: 20px;
+}
+.sheet .main-stats .value {
+  display: flex;
+  color: black;
+  border: 1px solid black;
+}
+.sheet .main-stats input {
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  background-color: antiquewhite;
+}
+
+.sheet .talents,
+.sheet .abilities {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+}
+.sheet .talent {
+  margin-bottom: 25px;
   display: inline-block;
   flex-direction: row;
   position: relative;
   background-color: #191813;
   color: whitesmoke;
-  height: 125px;
-  width: 257px;
+  height: 75px;
 }
-.sheet .stat {
-  width: 150;
+.sheet .ability {
+  margin-bottom: 25px;
   display: inline-block;
   flex-direction: row;
   position: relative;
+  background-color: #3c3c3c;
+  color: whitesmoke;
+  height: 105px;
 }
-.sheet .vig {
-  background-color: #ff5733;
+
+.sheet .vig input {
+  background-color: #dd7057;
 }
-.sheet .dex {
-  background-color: #169818;
+.sheet .dex input {
+  background-color: #50a852;
 }
-.sheet .int {
-  background-color: #9c1eb5;
+.sheet .int input {
+  background-color: #b263c2;
 }
-.sheet .wis {
-  background-color: #252ab6;
+.sheet .wis input {
+  background-color: #6266cd;
 }
-.sheet .cha {
-  background-color: #ffad33;
+.sheet .cha input {
+  background-color: #eaac4e;
+}
+.sheet .stat input {
+  max-width: 90px;
 }

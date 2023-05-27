@@ -10,4 +10,10 @@ export default class BariandActorSheet extends ActorSheet {
     console.log({ data });
     return data;
   }
+  static get defaultOptions() {
+    return foundry.utils.mergeObject(super.defaultOptions, {
+      width: 1150,
+      height: 750,
+    });
+  }
 }
