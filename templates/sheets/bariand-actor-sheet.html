@@ -1,278 +1,259 @@
-<form class="sheet" autocomplete="off">
-  <header class="sheet-header">
-    <img
-      src="{{data.img}}"
-      data-edit="img"
-      title="{{data.name}}"
-      height="64"
-      width="64"
-    />
-    <h1>
-      <input name="name" type="text" value="{{data.name}}" placeholder="Nom" />
-    </h1>
-  </header>
-  <div class="sheet-body">
-    <div class="all-stats">
-      <div class="sub-stats">
-        <div class="sub-stats-title">
-          <p>Vigueur</p>
-          <input
-            name="system.vigor"
-            type="text"
-            value="{{data.system.vigor}}"
-          />
-        </div>
-        <div class="stats-grid vig">
-          <p>Force</p>
-          <input
-            name="system.strength"
-            type="text"
-            value="{{data.system.strength}}"
-          />
-          <p>Ténacité</p>
-          <input
-            name="system.tenacity"
-            type="text"
-            value="{{data.system.tenacity}}"
-          />
-          <p>Vitalité</p>
-          <input
-            name="system.vitality"
-            type="text"
-            value="{{data.system.vitality}}"
-          />
-        </div>
+<form class="{{cssClass}} actor-sheet" autocomplete="off">
+  <!-- Header -->
+  <section id="character-{{_id}}-header" class="header flex-horizontal">
+    <div class="">
+      <img
+        src="{{data.img}}"
+        data-edit="img"
+        title="{{data.name}}"
+        class="portrait"
+      />
+    </div>
 
-        <div class="sub-stats-title">
-          <p>Dextérité</p>
-          <input
-            name="system.dexterity"
-            type="text"
-            value="{{data.system.dexterity}}"
-          />
-        </div>
-        <div class="stats-grid dex">
-          <p>Agilité</p>
-          <input
-            name="system.agility"
-            type="text"
-            value="{{data.system.agility}}"
-          />
-          <p>Habileté</p>
-          <input
-            name="system.handDex"
-            type="text"
-            value="{{data.system.handDex}}"
-          />
-          <p>Discrétion</p>
-          <input
-            name="system.stealth"
-            type="text"
-            value="{{data.system.stealth}}"
-          />
-        </div>
-
-        <div class="sub-stats-title">
-          <p>Intelligence</p>
-          <input
-            name="system.intelligence"
-            type="text"
-            value="{{data.system.intelligence}}"
-          />
-        </div>
-        <div class="stats-grid int">
-          <p>Logique</p>
-          <input
-            name="system.logic"
-            type="text"
-            value="{{data.system.logic}}"
-          />
-          <p>Concentration</p>
-          <input
-            name="system.concentration"
-            type="text"
-            value="{{data.system.concentration}}"
-          />
-          <p>Culture</p>
-          <input
-            name="system.culture"
-            type="text"
-            value="{{data.system.culture}}"
-          />
-        </div>
-
-        <div class="sub-stats-title">
-          <p>Sagesse</p>
-          <input
-            name="system.wisdom"
-            type="text"
-            value="{{data.system.wisdom}}"
-          />
-        </div>
-        <div class="stats-grid wis">
-          <p>Perspicacité</p>
-          <input
-            name="system.perception"
-            type="text"
-            value="{{data.system.perception}}"
-          />
-          <p>Jugement</p>
-          <input
-            name="system.insight"
-            type="text"
-            value="{{data.system.insight}}"
-          />
-          <p>Volonté</p>
-          <input name="system.will" type="text" value="{{data.system.will}}" />
-        </div>
-
-        <div class="sub-stats-title">
-          <p>Charisme</p>
-          <input
-            name="system.charisma"
-            type="text"
-            value="{{data.system.charisma}}"
-          />
-        </div>
-        <div class="stats-grid cha">
-          <p>Charme</p>
-          <input
-            name="system.charm"
-            type="text"
-            value="{{data.system.charm}}"
-          />
-          <p>Influence</p>
-          <input
-            name="system.influence"
-            type="text"
-            value="{{data.system.influence}}"
-          />
-          <p>Tromperie</p>
-          <input
-            name="system.deception"
-            type="text"
-            value="{{data.system.deception}}"
-          />
-        </div>
+    <!-- Primary info (Name, country, class, magic) -->
+    <div class="primary-info flex-vertical gap-10">
+      <div id="character-{{_id}}-name-box">
+        <label for="character-{{_id}}-name">Nom</label>
+        <input
+          type="text"
+          id="character-{{_id}}-name"
+          class="name"
+          name="name"
+          value="{{data.name}}"
+        />
       </div>
 
-      <div class="main-stats">
-        <div class="label"><p>Niveau</p></div>
-        <div class="value">
-          <input
-            name="system.niveau"
-            type="text"
-            value="{{data.system.niveau}}"
-          />
-        </div>
-
-        <div class="label"><p>PV</p></div>
-        <div class="value">
-          <input name="system.pv" type="text" value="{{data.system.pv}}" />
-        </div>
-
-        <div class="label"><p>Mana</p></div>
-        <div class="value">
-          <input name="system.mana" type="text" value="{{data.system.mana}}" />
-        </div>
-
-        <div class="label"><p>Adversité</p></div>
-        <div class="value">
-          <input
-            name="system.advers"
-            type="text"
-            value="{{data.system.advers}}"
-          />
-        </div>
-
-        <div class="label"><p>Résistance</p></div>
-        <div class="value">
-          <input
-            name="system.resist"
-            type="text"
-            value="{{data.system.resist}}"
-          />
-        </div>
-
-        <div class="label"><p>Vitesse</p></div>
-        <div class="value">
-          <input
-            name="system.vitesse"
-            type="text"
-            value="{{data.system.vitesse}}"
-          />
-        </div>
+      <div id="character-{{_id}}-country-box">
+        <label for="character-{{_id}}-country">Pays</label>
+        <input
+          type="text"
+          id="character-{{_id}}-country"
+          class="country"
+          name="system.country"
+          value="{{data.system.country}}"
+        />
       </div>
 
-      <div class="talents">
-        <textarea
-          name="system.skill1"
+      <div id="character-{{_id}}-class-box">
+        <label for="character-{{_id}}-class">Classe</label>
+        <input
           type="text"
-          placeholder="talent"
-          class="talent"
-        >
-{{data.system.skill1}}</textarea
-        >
-        <textarea
-          name="system.skill2"
-          type="text"
-          placeholder="talent"
-          class="talent"
-        >
-{{data.system.skill2}}</textarea
-        >
-        <textarea
-          name="system.skill3"
-          type="text"
-          placeholder="talent"
-          class="talent"
-        >
-{{data.system.skill3}}</textarea
-        >
-        <textarea
-          name="system.skill4"
-          type="text"
-          placeholder="talent"
-          class="talent"
-        >
-{{data.system.skill4}}</textarea
-        >
+          id="character-{{_id}}-class"
+          class="class"
+          name="system.class"
+          value="{{data.system.class}}"
+        />
       </div>
 
-      <div class="abilities">
-        <textarea
-          name="system.skill5"
+      <div id="character-{{_id}}-magic-box">
+        <label for="character-{{_id}}-magic">Magie</label>
+        <input
           type="text"
-          placeholder="compétence"
-          class="ability"
-        >
-{{data.system.skill5}}</textarea
-        >
-        <textarea
-          name="system.skill6"
-          type="text"
-          placeholder="compétence"
-          class="ability"
-        >
-{{data.system.skill6}}</textarea
-        >
-        <textarea
-          name="system.skill7"
-          type="text"
-          placeholder="compétence"
-          class="ability"
-        >
-{{data.system.skill7}}</textarea
-        >
-        <textarea
-          name="system.skill8"
-          type="text"
-          placeholder="compétence"
-          class="ability"
-        >
-{{data.system.skill8}}</textarea
-        >
+          id="character-{{_id}}-magic"
+          class="magic"
+          name="system.magic"
+          value="{{data.system.magic}}"
+        />
       </div>
     </div>
-  </div>
+
+    <!-- Secondary info -->
+    <div class="secondary-info flex-vertical flex-grow gap-10">
+      <div class="flex-horizontal align-end gap-20">
+        <!-- Age -->
+        <div class="flex-horizontal gap-5 align-center">
+          <input
+            type="number"
+            id="character-{{_id}}-age"
+            class="age"
+            name="system.age"
+            value="{{data.system.age}}"
+          />
+          ans
+        </div>
+
+        <!-- Height -->
+        <div class="flex-horizontal gap-5 align-center">
+          <input
+            type="number"
+            id="character-{{_id}}-height"
+            class="height"
+            name="system.height"
+            value="{{data.system.height}}"
+          />
+          cm
+        </div>
+
+        <!-- Weight -->
+        <div class="flex-horizontal gap-5 align-center">
+          <input
+            type="number"
+            id="character-{{_id}}-weight"
+            class="weight"
+            name="system.weight"
+            value="{{data.system.weight}}"
+          />
+          kg
+        </div>
+      </div>
+
+      <!-- HP -->
+      <div class="health-container flex-vertical">
+        <div class="flex-horizontal justify-between">
+          <p>Vie</p>
+          <div class="flex-horizontal align-center">
+            <input
+              name="system.hp.current"
+              type="number"
+              value="{{data.system.hp.current}}"
+            />
+            <p>/</p>
+            <input
+              name="system.hp.max"
+              type="number"
+              value="{{data.system.hp.max}}"
+            />
+            <p>(+</p>
+            <input
+              name="system.hp.bonus"
+              type="number"
+              value="{{data.system.hp.bonus}}"
+            />
+            <p>)</p>
+          </div>
+        </div>
+        <div class="health flex-horizontal">
+          {{#progress_bar data.system.hp.current data.system.hp.max
+          data.system.hp.bonus}}
+          <div
+            id="character-{{../_id}}-health-{{this.i}}"
+            class="{{this.class}}"
+          ></div>
+          {{/progress_bar}}
+        </div>
+      </div>
+
+      <!-- Mana -->
+      <div class="mana-container flex-vertical">
+        <div class="flex-horizontal justify-between">
+          <p>Mana</p>
+          <div class="flex-horizontal align-center">
+            <input
+              name="system.mana.current"
+              type="number"
+              value="{{data.system.mana.current}}"
+            />
+            <p>/</p>
+            <input
+              name="system.mana.max"
+              type="number"
+              value="{{data.system.mana.max}}"
+            />
+          </div>
+        </div>
+        <div class="mana flex-horizontal">
+          {{#progress_bar data.system.mana.current data.system.mana.max 0}}
+          <div
+            id="character-{{../_id}}-mana-{{this.i}}"
+            class="{{this.class}}"
+          ></div>
+          {{/progress_bar}}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Combat (Adversity, resistance, speed) -->
+  <section
+    id="character-{{_id}}-combat"
+    class="combat flex-horizontal big-teeth-section"
+  >
+    <!-- Adversity points -->
+    <div id="character-{{_id}}-adversity" class="adversity big-teeth">
+      {{#multiboxes data.system.adversity}}
+      <input
+        type="radio"
+        id="character-{{_id}}-adversity-0"
+        name="system.adversity"
+        value="0"
+        dtype="Radio"
+      />
+      <label class="black-label" for="character-{{_id}}-adversity-0"
+        >Adversité</label
+      >
+
+      {{#times_from_1 5}}
+      <input
+        type="radio"
+        id="character-{{../_id}}-adversity-{{this}}"
+        name="system.adversity"
+        value="{{this}}"
+        dtype="Radio"
+      />
+      <label for="character-{{../_id}}-adversity-{{this}}"></label>
+      {{/times_from_1}} {{/multiboxes}}
+    </div>
+
+    <!-- Resistance -->
+    <div class="resistance flex-horizontal gap-10">
+      <div class="flex-horizontal">
+        <label class="black-label">Résistance</label>
+        <div class="stat-value">2</div>
+      </div>
+
+      <div class="combat-stat-column flex-vertical gap-10">
+        <div class="flex-horizontal align-center">
+          <label for="character-{{_id}}-resistance">Base</label>
+          <input
+            type="text"
+            id="character-{{_id}}-resistance"
+            class="resistance"
+            name="system.resistance.base"
+            value="{{data.system.resistance.base}}"
+          />
+        </div>
+        <div class="flex-horizontal align-center">
+          <label for="character-{{_id}}-resistance">Bonus</label>
+          <input
+            type="text"
+            id="character-{{_id}}-resistance"
+            class="resistance"
+            name="system.resistance.bonus"
+            value="{{data.system.resistance.bonus}}"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Speed -->
+    <div class="speed flex-horizontal gap-10">
+      <div class="flex-horizontal">
+        <label class="black-label">Vitesse</label>
+        <div class="stat-value">2</div>
+      </div>
+
+      <div class="combat-stat-column flex-vertical gap-10">
+        <div class="flex-horizontal align-center">
+          <label for="character-{{_id}}-speed">Base</label>
+          <input
+            type="text"
+            id="character-{{_id}}-speed"
+            class="speed"
+            name="system.speed.base"
+            value="{{data.system.speed.base}}"
+          />
+        </div>
+        <div class="flex-horizontal align-center">
+          <label for="character-{{_id}}-speed">Bonus</label>
+          <input
+            type="text"
+            id="character-{{_id}}-speed"
+            class="speed"
+            name="system.speed.bonus"
+            value="{{data.system.speed.bonus}}"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
 </form>

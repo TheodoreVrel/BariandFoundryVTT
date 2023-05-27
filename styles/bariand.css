@@ -1,129 +1,279 @@
-.sheet p {
-  margin: 0;
+@import url("https://fonts.googleapis.com/css2?family=Teko:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poltawski+Nowy&display=swap");
+@font-face {
+  font-family: "Kirsty";
+  src: url("assets/fonts/Kirsty/Kirsty.ttf") format("truetype"); /* Safari, Android, iOS */
+  font-weight: normal;
+  font-style: normal;
 }
-.sheet input {
+@font-face {
+  font-family: "Kirsty";
+  src: url("assets/fonts/Kirsty/KirstyBold.ttf") format("truetype"); /* Safari, Android, iOS */
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Kirsty";
+  src: url("assets/fonts/Kirsty/KirstyBoldItalic.ttf") format("truetype"); /* Safari, Android, iOS */
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Kirsty";
+  src: url("assets/fonts/Kirsty/KirstyItalic.ttf") format("truetype"); /* Safari, Android, iOS */
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Crimson Text";
+  src: url("assets/fonts/CrimsonText/CrimsonText-Regular.ttf")
+    format("truetype"); /* Safari, Android, iOS */
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Crimson Text";
+  src: url("assets/fonts/CrimsonText/CrimsonText-Bold.ttf") format("truetype"); /* Safari, Android, iOS */
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Crimson Text";
+  src: url("assets/fonts/CrimsonText/CrimsonText-BoldItalic.ttf")
+    format("truetype"); /* Safari, Android, iOS */
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Crimson Text";
+  src: url("assets/fonts/CrimsonText/CrimsonText-Italic.ttf") format("truetype"); /* Safari, Android, iOS */
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Crimson Text";
+  src: url("assets/fonts/CrimsonText/CrimsonText-SemiBold.ttf")
+    format("truetype"); /* Safari, Android, iOS */
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Crimson Text";
+  src: url("assets/fonts/CrimsonText/CrimsonText-SemiBoldItalic.ttf")
+    format("truetype"); /* Safari, Android, iOS */
+  font-weight: 600;
+  font-style: italic;
+}
+
+/**************************** General ****************************/
+.bariand {
+  font-family: "Poltawski Nowy", serif;
+}
+.bariand textarea {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.bariand .flex-horizontal {
+  display: flex;
+  flex-direction: row;
+}
+.bariand .flex-vertical {
+  display: flex;
+  flex-direction: column;
+}
+.bariand .flex-grow {
+  flex-grow: 1;
+}
+.bariand .align-center {
+  align-items: center;
+}
+.bariand .align-start {
+  align-items: flex-start;
+}
+.bariand .align-end {
+  align-items: flex-end;
+}
+.bariand .justify-between {
+  justify-content: space-between;
+}
+.bariand .gap-5 {
+  gap: 5px;
+}
+.bariand .gap-10 {
+  gap: 10px;
+}
+.bariand .gap-20 {
+  gap: 20px;
+}
+.bariand .tab[data-tab] {
+  display: none;
+}
+.bariand .tab[data-tab].active {
+  display: block;
+}
+
+.bariand .text-center {
   text-align: center;
 }
 
-.sheet .sheet-body {
-  display: flex;
-  flex-direction: column;
-  color: antiquewhite;
-  background-color: #494843;
-  padding-left: 5px;
+/**************************** Actor sheet ****************************/
+.bariand .actor-sheet .header {
+  height: 275px;
+  margin: 0 20px 20px 0;
+  gap: 15px;
 }
-.sheet .all-stats {
-  display: flex;
-  gap: 50px;
-  margin: 20px;
+.bariand .actor-sheet .header label {
+  font-size: 14px;
 }
-.sheet .sub-stats {
-  display: flex;
-  flex-direction: column;
+.bariand .actor-sheet .header input {
+  border: none;
+  height: 28px;
+  font-size: 18px;
 }
-.sheet .sub-stats-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: antiquewhite;
-  background-color: black;
-  padding: 6px 12px;
+.bariand .actor-sheet .portrait {
+  max-width: 250px;
+  max-height: 275px;
+  width: auto;
+  height: auto;
 }
-.sheet .sub-stats-title p {
-  font-weight: bold;
-  padding-right: 8px;
+.bariand .actor-sheet .primary-info {
+  width: 210px;
+  margin-right: 20px;
 }
-.sheet .sub-stats-title input {
-  color: antiquewhite;
-  background-color: black;
-  width: 22px;
-  align-self: flex-end;
+.bariand .actor-sheet .secondary-info {
+  margin-top: 18.5px;
 }
-.sheet .stats-grid {
-  display: grid;
-  align-items: center;
-  grid-template-columns: 110px 40px;
-  grid-template-rows: repeat(3, 25px);
-  grid-gap: 2px 0;
-  margin-bottom: 5px;
-  padding: 5px;
-  border: 1px solid black;
-  color: black;
-  background-color: antiquewhite;
-}
-.sheet .stat {
-  display: inline-block;
-  flex-direction: row;
-  position: flex;
+.bariand .actor-sheet .secondary-info input {
+  text-align: right;
+  width: 40px;
 }
 
-.sheet .main-stats {
-  display: grid;
-  grid-gap: 20px 0;
-  grid-template-columns: 120px 80px;
-  grid-template-rows: repeat(6, 70px);
+/* Health and mana */
+.bariand .health-container {
+  margin-top: auto;
 }
-.sheet .main-stats .label {
-  display: flex;
-  color: antiquewhite;
-  background-color: black;
+.bariand .mana-container {
+  margin-bottom: 20px;
 }
-.sheet .main-stats p {
-  margin: auto;
-  font-size: 20px;
+.bariand .health-container input,
+.bariand .mana-container input {
+  text-align: center !important;
+  font-size: 14px !important;
+  width: 27px !important;
+  height: 20px !important;
+  background: transparent;
 }
-.sheet .main-stats .value {
-  display: flex;
-  color: black;
-  border: 1px solid black;
-}
-.sheet .main-stats input {
+.bariand .health,
+.bariand .mana {
   width: 100%;
-  height: 100%;
-  font-size: 20px;
-  background-color: antiquewhite;
+  height: 15px;
+  transform: skewX(350deg);
+  border: 1px solid #606060c0;
+}
+.bariand .progress-bar {
+  width: 100%;
+  border-right: 1px dotted #ffffff30;
+}
+.bariand .progress-bar.tens {
+  width: 100%;
+  border-right: 1px solid #606060c0;
+}
+.bariand .health .progress-bar.filled-bar {
+  background: linear-gradient(0deg, #51d353, #51d35370);
+}
+.bariand .mana .progress-bar.filled-bar {
+  background: linear-gradient(0deg, #7378f9, #7378f970);
+}
+.bariand .progress-bar.empty-bar {
+  background-color: #79787380;
+}
+.bariand .progress-bar.max {
+  border-right: 2px solid #ffffff;
+}
+.bariand .progress-bar.filled-bar.bonus {
+  filter: brightness(1.2);
+}
+.bariand .progress-bar.empty-bar.bonus {
+  filter: brightness(1.6);
 }
 
-.sheet .talents,
-.sheet .abilities {
+.bariand .combat {
+  height: 70px;
   display: flex;
-  flex-direction: column;
-  width: 260px;
-}
-.sheet .talent {
-  margin-bottom: 25px;
-  display: inline-block;
   flex-direction: row;
-  position: relative;
+  gap: 35px;
+  border-top: 3px solid black;
+  margin-bottom: 20px;
+}
+.bariand .adversity {
+  display: flex;
+}
+.bariand .black-label {
   background-color: #191813;
-  color: whitesmoke;
-  height: 75px;
+  color: #eeefff;
+  font-size: 21px;
+  text-align: center;
+  padding: 0px 8px;
+  height: 30px !important;
+  text-transform: capitalize;
+  font-family: Teko, serif;
 }
-.sheet .ability {
-  margin-bottom: 25px;
-  display: inline-block;
-  flex-direction: row;
-  position: relative;
-  background-color: #3c3c3c;
-  color: whitesmoke;
-  height: 105px;
+.bariand * .big-teeth-section .big-teeth label {
+  display: flex;
+  height: 50px;
+  width: 17px;
+  background-image: url("assets/teeth/stresstooth-red.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 8px;
+  transition: filter 0.1s;
+  cursor: pointer;
+}
+.bariand * .big-teeth-section .big-teeth label:last-of-type {
+  margin-right: 0px;
+}
+.bariand * .big-teeth-section .big-teeth label[for$="-0"] {
+  width: auto;
+  height: auto;
+  background-image: none !important;
+  color: #eeefff;
+}
+.bariand * .big-teeth-section .big-teeth label[for$="-0"] i {
+  margin-top: 4px;
+}
+.bariand * .big-teeth-section .big-teeth label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+}
+.bariand * .big-teeth-section .big-teeth input {
+  display: none;
+}
+.bariand * .big-teeth-section .big-teeth input:checked ~ label {
+  background-image: url("assets/teeth/stresstooth-halfgrey.png");
+}
+.bariand * .big-teeth-section .big-teeth input:checked + label {
+  background-image: url("assets/teeth/stresstooth-red.png");
 }
 
-.sheet .vig input {
-  background-color: #dd7057;
+.bariand .stat-value {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  background-color: white;
 }
-.sheet .dex input {
-  background-color: #50a852;
+.bariand .combat-stat-column {
+  margin-top: 5px;
 }
-.sheet .int input {
-  background-color: #b263c2;
+.bariand .combat-stat-column label {
+  width: 45px;
 }
-.sheet .wis input {
-  background-color: #6266cd;
-}
-.sheet .cha input {
-  background-color: #eaac4e;
-}
-.sheet .stat input {
-  max-width: 90px;
+.bariand .combat-stat-column input {
+  border: none;
+  width: 28px;
+  text-align: center;
 }

@@ -7,13 +7,14 @@ export default class BariandActorSheet extends ActorSheet {
     const data = super.getData();
 
     data.config = CONFIG.bariand;
-    console.log({ data });
+    console.log(data.data.system);
     return data;
   }
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      width: 1150,
-      height: 750,
+      classes: ["bariand", "sheet", "actor"],
+      width: 850,
+      height: 1050,
     });
   }
 }
