@@ -16,6 +16,9 @@ Hooks.once("init", function () {
   Items.registerSheet("bariand", BariandItemSheet, { makeDefault: true });
 
   // CODE LOUIS
+  //
+  //
+  //
 
   CONFIG.Canvas.visionModes.intangibleEye = new VisionMode(
     {
@@ -46,7 +49,25 @@ Hooks.once("init", function () {
         },
       },
     },
-    { animated: false }
+    { animated: false },
+    {}
   );
-  console.log(intangibleEye);
+  CONFIG.Canvas.detectionModes.hearing = new DetectionModeHearing({
+    id: "hearing",
+    label: "Hearing",
+    walls: false,
+    angle: false,
+    type: DetectionMode.DETECTION_TYPES.SOUND,
+  });
 });
+
+class DetectionModeHearing extends DetectionModeBasicSight {
+  /** @override */
+  static getDetectionFilter() {
+    return (this._detectionFilter ??= OutlineOverlayFilter.create({
+      outlineColor: [1, 0.7, 0.4, 1],
+      knockout: true,
+      wave: true,
+    }));
+  }
+}
