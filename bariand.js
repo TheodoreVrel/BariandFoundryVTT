@@ -14,4 +14,38 @@ Hooks.once("init", function () {
   });
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("bariand", BariandItemSheet, { makeDefault: true });
+
+  // CODE LOUIS
+
+  CONFIG.Canvas.visionModes.intangibleEye = new VisionMode(
+    {
+      id: "intangibleEye",
+      label: "Intangible Eye",
+      canvas: {
+        shader: ColorAdjustmentsSamplerShader,
+        uniforms: {
+          contrast: 0,
+          saturation: -0.8,
+          exposure: -0.65,
+        },
+      },
+      lighting: {
+        background: { visibility: VisionMode.LIGHTING_VISIBILITY.DISABLED },
+        illumination: {
+          visibility: VisionMode.LIGHTING_VISIBILITY.DISABLED,
+        },
+        coloration: { visibility: VisionMode.LIGHTING_VISIBILITY.DISABLED },
+      },
+      vision: {
+        darkness: { adaptive: false },
+        defaults: {
+          attenuation: 0,
+          contrast: 0.4,
+          saturation: -0.7,
+          brightness: 1,
+        },
+      },
+    },
+    { animated: false }
+  );
 });
