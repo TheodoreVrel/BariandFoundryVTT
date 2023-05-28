@@ -48,4 +48,5 @@ Hooks.once("init", function () {
     },
     { animated: false }
   );
+  console.log(intangibleEye);
 });
