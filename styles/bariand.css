@@ -113,6 +113,12 @@
   display: block;
 }
 
+.bariand .input-left-gradient input {
+  background: linear-gradient(90deg, #00000010 45%, transparent 100%);
+}
+.bariand .input-right-gradient input {
+  background: linear-gradient(270deg, #00000010 45%, transparent 100%);
+}
 .bariand .text-center {
   text-align: center;
 }
@@ -169,7 +175,7 @@
   width: 100%;
   height: 15px;
   transform: skewX(350deg);
-  border: 1px solid #606060c0;
+  border: 1px solid #000000c0;
 }
 .bariand .progress-bar {
   width: 100%;
@@ -177,7 +183,7 @@
 }
 .bariand .progress-bar.tens {
   width: 100%;
-  border-right: 1px solid #606060c0;
+  border-right: 1px solid #303030c0;
 }
 .bariand .health .progress-bar.filled-bar {
   background: linear-gradient(0deg, #51d353, #51d35370);
@@ -203,11 +209,17 @@
   display: flex;
   flex-direction: row;
   gap: 35px;
-  border-top: 3px solid black;
-  margin-bottom: 20px;
+  border-top: 2px solid black;
+  margin-bottom: 10px;
 }
 .bariand .adversity {
   display: flex;
+}
+.bariand .resistance {
+  margin-left: auto;
+}
+.bariand .speed {
+  margin-right: 30px;
 }
 .bariand .black-label {
   background-color: #191813;
@@ -264,6 +276,7 @@
   align-items: center;
   justify-content: center;
   border: 1px solid black;
+  border-top: 0;
   background-color: white;
 }
 .bariand .combat-stat-column {
@@ -276,4 +289,170 @@
   border: none;
   width: 28px;
   text-align: center;
+}
+
+/* Stuff section */
+.bariand * .stuff {
+  display: flex;
+  flex-direction: row;
+  padding-top: 15px;
+  border-top: 1px solid #00000055;
+}
+
+/* Attributes */
+.bariand * .attributes {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 200px;
+}
+.bariand * .attributes .stripe {
+  background-color: #191813;
+  color: #eeefff;
+  font-size: 17px;
+  padding-left: 5px;
+  padding-top: 2px;
+}
+.bariand * .attributes .attribute-label {
+  font-family: Teko, serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.bariand * .attributes .attribute-skill-label {
+  letter-spacing: 0.3px;
+}
+.bariand * .attributes .attributes-value {
+  position: relative;
+  margin-bottom: 5px;
+}
+.bariand * .attributes .attributes-value .stripe-tooth-body {
+  display: flex;
+  /* Hide the browser's default checkbox */
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.bariand * .attributes .attributes-value .stripe-tooth-body label {
+  height: 32px;
+  width: 11px;
+  background-image: url("assets/teeth/xptooth-white.png");
+  filter: brightness(1) drop-shadow(0px 6px 5px black);
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 5px;
+  transition: filter 0.1s;
+  cursor: pointer;
+}
+.bariand * .attributes .attributes-value .stripe-tooth-body label:last-of-type {
+  margin-right: 0px;
+}
+.bariand * .attributes .attributes-value .stripe-tooth-body label[for$="-0"] {
+  width: auto;
+  height: auto;
+  background-image: none !important;
+  color: #eeefff;
+  margin-top: 2px;
+}
+.bariand * .attributes .attributes-value .stripe-tooth-body label[for$="-0"] i {
+  margin-top: 4px;
+}
+.bariand * .attributes .attributes-value .stripe-tooth-body label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+}
+.bariand * .attributes .attributes-value .stripe-tooth-body input {
+  display: none;
+}
+.bariand
+  *
+  .attributes
+  .attributes-value
+  .stripe-tooth-body
+  input:checked
+  ~ label {
+  background-image: url("assets/teeth/xptooth-white.png");
+  filter: brightness(0.4);
+}
+.bariand
+  *
+  .attributes
+  .attributes-value
+  .stripe-tooth-body
+  input:checked
+  + label {
+  filter: brightness(1) drop-shadow(0px 6px 5px black);
+}
+.bariand * .attributes .attributes-container {
+  display: flex;
+  align-items: center;
+  margin: 3px 0px;
+}
+.bariand * .attributes .attributes-container label {
+  height: 13px;
+  width: 13px;
+  background-color: #131319;
+  vertical-align: middle;
+  border: 1px solid #191813;
+  border-radius: 24px;
+  transition: filter 0.1s;
+  cursor: pointer;
+}
+.bariand * .attributes .attributes-container label[for$="-0"] {
+  height: 5px;
+  width: 5px;
+  align-self: flex-start;
+  border-radius: 24px;
+  background-image: none !important;
+  background-color: white !important;
+  margin-right: 0px;
+}
+.bariand * .attributes .attributes-container label[for$="-1"] {
+  filter: drop-shadow(0px 0px 2px #00000070);
+}
+.bariand * .attributes .attributes-container label:hover {
+  filter: brightness(0.7);
+  opacity: 0.7;
+}
+.bariand * .attributes .attributes-container input {
+  display: none;
+}
+.bariand * .attributes .attributes-container input:checked ~ label {
+  background-color: #eeefff;
+}
+.bariand * .attributes .attributes-container input:checked + label {
+  transition: filter 0.1s;
+  cursor: pointer;
+  background-color: #191813;
+}
+.bariand * .attributes .attributes-container input:checked + label:hover {
+  filter: brightness(0.7);
+  opacity: 0.7;
+}
+.bariand * .attributes .attributes-container * {
+  margin-right: 5px;
+}
+.bariand * .attributes .attributes-container.vigor label,
+.bariand * .attributes .attributes-container.vigor input:checked + label {
+  background-color: #dd7057;
+}
+.bariand * .attributes .attributes-container.dexterity label,
+.bariand * .attributes .attributes-container.dexterity input:checked + label {
+  background-color: #50a852;
+}
+.bariand * .attributes .attributes-container.intelligence label,
+.bariand
+  *
+  .attributes
+  .attributes-container.intelligence
+  input:checked
+  + label {
+  background-color: #b263c2;
+}
+.bariand * .attributes .attributes-container.wisdom label,
+.bariand * .attributes .attributes-container.wisdom input:checked + label {
+  background-color: #6266cd;
+}
+.bariand * .attributes .attributes-container.charisma label,
+.bariand * .attributes .attributes-container.charisma input:checked + label {
+  background-color: #eaac4e;
 }

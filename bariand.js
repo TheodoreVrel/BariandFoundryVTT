@@ -1,8 +1,9 @@
 // import { bariand } from "./modules/config.js";
+import { preloadHandlebarsTemplates } from "./modules/bariand-templates.js";
 import BariandActorSheet from "./modules/sheets/bariandActorSheet.js";
 import BariandItemSheet from "./modules/sheets/bariandItemSheet.js";
 
-Hooks.once("init", function () {
+Hooks.once("init", async function () {
   console.log("bariand - initialisation");
 
   //CONFIG.bariand = bariand;
@@ -15,6 +16,8 @@ Hooks.once("init", function () {
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("bariand", BariandItemSheet, { makeDefault: true });
 
+  await preloadHandlebarsTemplates();
+
   /************************************** Methods **************************************/
   // Multiboxes
   Handlebars.registerHelper("multiboxes", function (selected, options) {
@@ -24,8 +27,6 @@ Hooks.once("init", function () {
     if (!Array.isArray(selected)) {
       selected = [selected];
     }
-
-    console.log({ selected });
 
     if (typeof selected !== "undefined") {
       selected.forEach((selected_value) => {
@@ -47,10 +48,10 @@ Hooks.once("init", function () {
     return html;
   });
 
-  // Times from 1
-  Handlebars.registerHelper("times_from_1", function (n, block) {
+  // Times from a -> b
+  Handlebars.registerHelper("times_from", function (a, b, block) {
     var accum = "";
-    for (var i = 1; i <= n; ++i) {
+    for (var i = a; i <= b; ++i) {
       accum += block.fn(i);
     }
     return accum;
@@ -76,4 +77,9 @@ Hooks.once("init", function () {
       return accum;
     }
   );
+
+  // Calculate value + bonus
+  Handlebars.registerHelper("calc", function (value, bonus) {
+    return Number(value) + Number(bonus);
+  });
 });

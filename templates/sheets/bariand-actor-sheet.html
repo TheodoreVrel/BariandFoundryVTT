@@ -11,7 +11,7 @@
     </div>
 
     <!-- Primary info (Name, country, class, magic) -->
-    <div class="primary-info flex-vertical gap-10">
+    <div class="primary-info flex-vertical gap-10 input-left-gradient">
       <div id="character-{{_id}}-name-box">
         <label for="character-{{_id}}-name">Nom</label>
         <input
@@ -58,7 +58,9 @@
     </div>
 
     <!-- Secondary info -->
-    <div class="secondary-info flex-vertical flex-grow gap-10">
+    <div
+      class="secondary-info flex-vertical flex-grow gap-10 input-right-gradient"
+    >
       <div class="flex-horizontal align-end gap-20">
         <!-- Age -->
         <div class="flex-horizontal gap-5 align-center">
@@ -182,7 +184,7 @@
         >Adversité</label
       >
 
-      {{#times_from_1 5}}
+      {{#times_from 1 5}}
       <input
         type="radio"
         id="character-{{../_id}}-adversity-{{this}}"
@@ -191,21 +193,23 @@
         dtype="Radio"
       />
       <label for="character-{{../_id}}-adversity-{{this}}"></label>
-      {{/times_from_1}} {{/multiboxes}}
+      {{/times_from}} {{/multiboxes}}
     </div>
 
     <!-- Resistance -->
     <div class="resistance flex-horizontal gap-10">
       <div class="flex-horizontal">
         <label class="black-label">Résistance</label>
-        <div class="stat-value">2</div>
+        <div class="stat-value">
+          {{calc data.system.resistance.base data.system.resistance.bonus}}
+        </div>
       </div>
 
       <div class="combat-stat-column flex-vertical gap-10">
         <div class="flex-horizontal align-center">
           <label for="character-{{_id}}-resistance">Base</label>
           <input
-            type="text"
+            type="number"
             id="character-{{_id}}-resistance"
             class="resistance"
             name="system.resistance.base"
@@ -215,7 +219,7 @@
         <div class="flex-horizontal align-center">
           <label for="character-{{_id}}-resistance">Bonus</label>
           <input
-            type="text"
+            type="number"
             id="character-{{_id}}-resistance"
             class="resistance"
             name="system.resistance.bonus"
@@ -229,14 +233,16 @@
     <div class="speed flex-horizontal gap-10">
       <div class="flex-horizontal">
         <label class="black-label">Vitesse</label>
-        <div class="stat-value">2</div>
+        <div class="stat-value">
+          {{calc data.system.speed.base data.system.speed.bonus}}
+        </div>
       </div>
 
       <div class="combat-stat-column flex-vertical gap-10">
         <div class="flex-horizontal align-center">
           <label for="character-{{_id}}-speed">Base</label>
           <input
-            type="text"
+            type="number"
             id="character-{{_id}}-speed"
             class="speed"
             name="system.speed.base"
@@ -246,7 +252,7 @@
         <div class="flex-horizontal align-center">
           <label for="character-{{_id}}-speed">Bonus</label>
           <input
-            type="text"
+            type="number"
             id="character-{{_id}}-speed"
             class="speed"
             name="system.speed.bonus"
@@ -255,5 +261,11 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- Stuff (attributes & tabs) -->
+  <section id="character-{{_id}}-stuff" class="stuff">
+    <!-- Attributes -->
+    {{> "systems/bariand/templates/parts/attributes.html" actor=actor}}
   </section>
 </form>
