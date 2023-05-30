@@ -52,13 +52,42 @@ Hooks.once("init", function () {
     { animated: false },
     {}
   );
+
+  CONFIG.specialStatusEffects.DEAF = "deaf";
+
   CONFIG.Canvas.detectionModes.hearing = new DetectionModeHearing({
     id: "hearing",
     label: "Hearing",
+    walls: true,
+    angle: false,
+    type: DetectionMode.DETECTION_TYPES.SOUND,
+  });
+  CONFIG.Canvas.detectionModes.trueHearing = new DetectionModeTrueHearing({
+    id: "trueHearing",
+    label: "True Hearing",
     walls: false,
     angle: false,
     type: DetectionMode.DETECTION_TYPES.SOUND,
   });
+
+  Token.prototype._onApplyStatusEffect = async function (statusId, active) {
+    switch (statusId) {
+      case CONFIG.specialStatusEffects.INVISIBLE:
+        canvas.perception.update({ refreshVision: true });
+        this.renderFlags.set({ refreshMesh: true, refreshShader: true });
+        break;
+      case CONFIG.specialStatusEffects.BLIND:
+        this.updateVisionSource();
+        canvas.perception.update({ initializeVision: true });
+        break;
+      case CONFIG.specialStatusEffects.DEAF:
+        this.updateVisionSource();
+        canvas.perception.update({ initializeVision: true });
+        break;
+    }
+
+    Hooks.callAll("applyTokenStatusEffect", this, statusId, active);
+  };
 });
 
 class DetectionModeHearing extends DetectionModeBasicSight {
@@ -69,5 +98,41 @@ class DetectionModeHearing extends DetectionModeBasicSight {
       knockout: true,
       wave: true,
     }));
+  }
+  /** @override */
+  _canDetect(visionSource, target) {
+    // The source may not be blind if the detection mode requires sight
+    const src = visionSource.object.document;
+    const isDeaf =
+      src instanceof TokenDocument &&
+      this.type === DetectionMode.DETECTION_TYPES.SOUND &&
+      src.hasStatusEffect(CONFIG.specialStatusEffects.DEAF);
+
+    const tgt = target?.document;
+    const isInvisible =
+      tgt instanceof TokenDocument &&
+      tgt.hasStatusEffect(CONFIG.specialStatusEffects.INVISIBLE);
+
+    return !isDeaf && !isInvisible;
+  }
+}
+class DetectionModeTrueHearing extends DetectionModeHearing {
+  /** @override */
+  static getDetectionFilter() {
+    return (this._detectionFilter ??= OutlineOverlayFilter.create({
+      outlineColor: [1, 0.7, 0.5, 1],
+      knockout: true,
+      wave: true,
+    }));
+  }
+  /** @override */
+  _canDetect(visionSource, target) {
+    // The source may not be blind if the detection mode requires sight
+    const src = visionSource.object.document;
+    const isDeaf =
+      src instanceof TokenDocument &&
+      this.type === DetectionMode.DETECTION_TYPES.SOUND &&
+      src.hasStatusEffect(CONFIG.specialStatusEffects.DEAF);
+    return !isDeaf;
   }
 }
