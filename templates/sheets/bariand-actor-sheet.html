@@ -61,7 +61,7 @@
     <div
       class="secondary-info flex-vertical flex-grow gap-10 input-right-gradient"
     >
-      <div class="flex-horizontal align-end gap-20">
+      <div class="more-info flex-horizontal align-end gap-20">
         <!-- Age -->
         <div class="flex-horizontal gap-5 align-center">
           <input
@@ -99,39 +99,95 @@
         </div>
       </div>
 
-      <!-- HP -->
+      <!-- Health -->
       <div class="health-container flex-vertical">
         <div class="flex-horizontal justify-between">
           <p>Vie</p>
           <div class="flex-horizontal align-center">
             <input
-              name="system.hp.current"
+              name="system.health.current"
               type="number"
-              value="{{data.system.hp.current}}"
+              value="{{data.system.health.current}}"
             />
             <p>/</p>
             <input
-              name="system.hp.max"
+              name="system.health.max"
               type="number"
-              value="{{data.system.hp.max}}"
+              value="{{data.system.health.max}}"
             />
             <p>(+</p>
             <input
-              name="system.hp.bonus"
+              name="system.health.bonus"
               type="number"
-              value="{{data.system.hp.bonus}}"
+              value="{{data.system.health.bonus}}"
             />
             <p>)</p>
           </div>
         </div>
         <div class="health flex-horizontal">
-          {{#progress_bar data.system.hp.current data.system.hp.max
-          data.system.hp.bonus}}
+          {{#progress_bar data.system.health.current data.system.health.max
+          data.system.health.bonus}}
           <div
             id="character-{{../_id}}-health-{{this.i}}"
             class="{{this.class}}"
           ></div>
           {{/progress_bar}}
+        </div>
+        <div class="resource-buttons flex-horizontal gap-5">
+          <button
+            class="resource-button edit-resource"
+            data-resource="health"
+            data-resource-value="-10"
+          >
+            -10
+          </button>
+          <button
+            class="resource-button edit-resource"
+            data-resource="health"
+            data-resource-value="-1"
+          >
+            -1
+          </button>
+          <div class="flex-horizontal resource-button">
+            <button
+              class="edit-resource"
+              data-resource="health"
+              data-resource-value="-{{data.system.health.change}}"
+              data-resource-variable="true"
+            >
+              -
+            </button>
+            <input
+              id="health-change"
+              type="number"
+              name="system.health.change"
+              value="{{data.system.health.change}}"
+            />
+            <button
+              class="edit-resource"
+              data-resource="health"
+              data-resource-value="{{data.system.health.change}}"
+              data-resource-variable="true"
+            >
+              +
+            </button>
+          </div>
+          <button
+            class="resource-button edit-resource"
+            data-resource="health"
+            data-resource-value="1"
+          >
+            +1
+          </button>
+          <button
+            class="resource-button edit-resource"
+            data-resource="health"
+            data-resource-value="10"
+          >
+            +10
+          </button>
+
+          <p>Shield</p>
         </div>
       </div>
 
@@ -264,8 +320,76 @@
   </section>
 
   <!-- Stuff (attributes & tabs) -->
-  <section id="character-{{_id}}-stuff" class="stuff">
+  <section id="character-{{_id}}-stuff" class="stuff flex-horizontal gap-20">
     <!-- Attributes -->
     {{> "systems/bariand/templates/parts/attributes.html" actor=actor}}
+
+    <!-- Tabs -->
+    <div class="all-tabs flex-vertical flex-grow">
+      <nav class="tabs flex-horizontal">
+        <a class="item" data-tab="abilities">Compétences</a>
+        <a class="item" data-tab="talents">Talents</a>
+        <a class="item" data-tab="loadout">Équipement</a>
+        <a class="item" data-tab="skill-tree">Arbre</a>
+        <a class="item" data-tab="character-notes">Notes</a>
+      </nav>
+
+      <div
+        id="character-{{_id}}-abilities"
+        class="tab flex-vertical abilities"
+        data-tab="abilities"
+      >
+        Compétences
+      </div>
+      <div
+        id="character-{{_id}}-talents"
+        class="tab flex-vertical talents"
+        data-tab="talents"
+      >
+        {{> "systems/bariand/templates/parts/talents.html" actor=actor}}
+      </div>
+      <div
+        id="character-{{_id}}-loadout"
+        class="tab flex-vertical loadout"
+        data-tab="loadout"
+      >
+        Équipement
+      </div>
+      <div
+        id="character-{{_id}}-skill-tree"
+        class="tab flex-vertical skill-tree"
+        data-tab="skill-tree"
+      >
+        <div class="tab-content flex-horizontal align-center">
+          <div class="flex-vertical align-center">
+            {{#tree data.system.class data.system.unlockedTreeCells
+            data.system.treeTooltip.cell}}
+            <div class="treeCell {{this.containerClass}}">
+              <div class="treeCellContent" data-cellid="{{this.cellId}}">
+                {{this.cellContent}}
+              </div>
+              <div class="treeCellShape"></div>
+            </div>
+            {{/tree}}
+          </div>
+
+          <div class="treeTooltip">
+            <h2>{{data.system.treeTooltip.title}}</h2>
+            <p>{{data.system.treeTooltip.description}}</p>
+          </div>
+        </div>
+      </div>
+      <div
+        id="character-{{_id}}-character-notes"
+        class="tab flex-vertical character-notes"
+        data-tab="character-notes"
+      >
+        <div class="tab-content">
+          <textarea class="w-full h-full" name="system.moreInfo">
+{{data.system.moreInfo}}</textarea
+          >
+        </div>
+      </div>
+    </div>
   </section>
 </form>

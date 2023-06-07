@@ -18,6 +18,6 @@ bariand.stat = {
   influence: bariand.stat.influence,
   deception: bariand.stat.deception,
   speed: bariand.stat.speed,
-  hp: bariand.stat.hp,
+  health: bariand.stat.health,
   adversity: bariand.stat.adversity,
 };

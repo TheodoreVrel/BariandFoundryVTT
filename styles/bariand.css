@@ -1,77 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Teko:wght@600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poltawski+Nowy&display=swap");
-@font-face {
-  font-family: "Kirsty";
-  src: url("assets/fonts/Kirsty/Kirsty.ttf") format("truetype"); /* Safari, Android, iOS */
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Kirsty";
-  src: url("assets/fonts/Kirsty/KirstyBold.ttf") format("truetype"); /* Safari, Android, iOS */
-  font-weight: bold;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Kirsty";
-  src: url("assets/fonts/Kirsty/KirstyBoldItalic.ttf") format("truetype"); /* Safari, Android, iOS */
-  font-weight: bold;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Kirsty";
-  src: url("assets/fonts/Kirsty/KirstyItalic.ttf") format("truetype"); /* Safari, Android, iOS */
-  font-weight: normal;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Crimson Text";
-  src: url("assets/fonts/CrimsonText/CrimsonText-Regular.ttf")
-    format("truetype"); /* Safari, Android, iOS */
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Crimson Text";
-  src: url("assets/fonts/CrimsonText/CrimsonText-Bold.ttf") format("truetype"); /* Safari, Android, iOS */
-  font-weight: bold;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Crimson Text";
-  src: url("assets/fonts/CrimsonText/CrimsonText-BoldItalic.ttf")
-    format("truetype"); /* Safari, Android, iOS */
-  font-weight: bold;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Crimson Text";
-  src: url("assets/fonts/CrimsonText/CrimsonText-Italic.ttf") format("truetype"); /* Safari, Android, iOS */
-  font-weight: normal;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Crimson Text";
-  src: url("assets/fonts/CrimsonText/CrimsonText-SemiBold.ttf")
-    format("truetype"); /* Safari, Android, iOS */
-  font-weight: 600;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Crimson Text";
-  src: url("assets/fonts/CrimsonText/CrimsonText-SemiBoldItalic.ttf")
-    format("truetype"); /* Safari, Android, iOS */
-  font-weight: 600;
-  font-style: italic;
-}
 
 /**************************** General ****************************/
 .bariand {
   font-family: "Poltawski Nowy", serif;
+  --vigor-color: #dd7057;
+  --dexterity-color: #50a852;
+  --intelligence-color: #b263c2;
+  --wisdom-color: #6266cd;
+  --charisma-color: #eaac4e;
 }
 .bariand textarea {
-  margin-top: 10px;
-  margin-bottom: 20px;
+  font-family: "Poltawski Nowy", serif;
+  border: none;
+  resize: none;
+  transition: all 0.5s ease;
+}
+.bariand textarea:focus {
+  box-shadow: 0 0 1px white;
+}
+.bariand input:focus {
+  box-shadow: none;
+}
+.bariand button:hover,
+.bariand button:focus {
+  box-shadow: 0 0 5px white;
+}
+
+.bariand .w-full {
+  width: 100%;
+}
+.bariand .h-full {
+  height: 100%;
 }
 
 .bariand .flex-horizontal {
@@ -125,21 +85,16 @@
 
 /**************************** Actor sheet ****************************/
 .bariand .actor-sheet .header {
-  height: 275px;
+  height: 245px;
   margin: 0 20px 20px 0;
   gap: 15px;
 }
-.bariand .actor-sheet .header label {
-  font-size: 14px;
-}
 .bariand .actor-sheet .header input {
   border: none;
-  height: 28px;
-  font-size: 18px;
 }
 .bariand .actor-sheet .portrait {
   max-width: 250px;
-  max-height: 275px;
+  max-height: 245px;
   width: auto;
   height: auto;
 }
@@ -147,10 +102,18 @@
   width: 210px;
   margin-right: 20px;
 }
+.bariand .actor-sheet .primary-info input {
+  border: none;
+  height: 28px;
+  font-size: 18px;
+}
+.bariand .actor-sheet .primary-info label {
+  font-size: 14px;
+}
 .bariand .actor-sheet .secondary-info {
   margin-top: 18.5px;
 }
-.bariand .actor-sheet .secondary-info input {
+.bariand .actor-sheet .more-info input {
   text-align: right;
   width: 40px;
 }
@@ -160,14 +123,14 @@
   margin-top: auto;
 }
 .bariand .mana-container {
-  margin-bottom: 20px;
+  margin-bottom: 35px;
 }
 .bariand .health-container input,
 .bariand .mana-container input {
-  text-align: center !important;
-  font-size: 14px !important;
-  width: 27px !important;
-  height: 20px !important;
+  text-align: center;
+  font-size: 14px;
+  width: 27px;
+  height: 20px;
   background: transparent;
 }
 .bariand .health,
@@ -192,7 +155,7 @@
   background: linear-gradient(0deg, #7378f9, #7378f970);
 }
 .bariand .progress-bar.empty-bar {
-  background-color: #79787380;
+  background-color: #79787365;
 }
 .bariand .progress-bar.max {
   border-right: 2px solid #ffffff;
@@ -203,7 +166,39 @@
 .bariand .progress-bar.empty-bar.bonus {
   filter: brightness(1.6);
 }
+.bariand .resource-buttons * {
+  height: 20px;
+  line-height: 20px;
+  margin: 0;
+}
+.bariand .resource-button {
+  font-size: 12px;
+  font-family: "Poltawski Nowy", serif;
+  width: auto;
+  border: 1px solid #00000050;
+  border-top: 0;
+  border-radius: 0 0 4px 4px;
+  background: #ffffff50;
+  margin: 0;
+}
+.bariand .resource-button input,
+.bariand .resource-button button {
+  font-size: 12px;
+  font-family: "Poltawski Nowy", serif;
+  max-height: 100%;
+  line-height: 7px;
+  border: none;
+  background: transparent;
+}
+.bariand .resource-button input {
+  width: 21px;
+}
+.bariand .resource-button button {
+  width: 10px;
+  padding: 0;
+}
 
+/* Combat section */
 .bariand .combat {
   height: 70px;
   display: flex;
@@ -230,8 +225,9 @@
   height: 30px !important;
   text-transform: capitalize;
   font-family: Teko, serif;
+  filter: drop-shadow(0px 5px 4px #00000070) !important;
 }
-.bariand * .big-teeth-section .big-teeth label {
+.bariand .big-teeth-section .big-teeth label {
   display: flex;
   height: 50px;
   width: 17px;
@@ -242,29 +238,29 @@
   transition: filter 0.1s;
   cursor: pointer;
 }
-.bariand * .big-teeth-section .big-teeth label:last-of-type {
+.bariand .big-teeth-section .big-teeth label:last-of-type {
   margin-right: 0px;
 }
-.bariand * .big-teeth-section .big-teeth label[for$="-0"] {
+.bariand .big-teeth-section .big-teeth label[for$="-0"] {
   width: auto;
   height: auto;
   background-image: none !important;
   color: #eeefff;
 }
-.bariand * .big-teeth-section .big-teeth label[for$="-0"] i {
+.bariand .big-teeth-section .big-teeth label[for$="-0"] i {
   margin-top: 4px;
 }
-.bariand * .big-teeth-section .big-teeth label:hover {
+.bariand .big-teeth-section .big-teeth label:hover {
   filter: brightness(0.8);
   opacity: 0.9;
 }
-.bariand * .big-teeth-section .big-teeth input {
+.bariand .big-teeth-section .big-teeth input {
   display: none;
 }
-.bariand * .big-teeth-section .big-teeth input:checked ~ label {
+.bariand .big-teeth-section .big-teeth input:checked ~ label {
   background-image: url("assets/teeth/stresstooth-halfgrey.png");
 }
-.bariand * .big-teeth-section .big-teeth input:checked + label {
+.bariand .big-teeth-section .big-teeth input:checked + label {
   background-image: url("assets/teeth/stresstooth-red.png");
 }
 
@@ -292,7 +288,7 @@
 }
 
 /* Stuff section */
-.bariand * .stuff {
+.bariand .stuff {
   display: flex;
   flex-direction: row;
   padding-top: 15px;
@@ -300,94 +296,93 @@
 }
 
 /* Attributes */
-.bariand * .attributes {
+.bariand .attributes {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  min-width: 200px;
   width: 200px;
 }
-.bariand * .attributes .stripe {
+.bariand .attributes .stripe {
   background-color: #191813;
   color: #eeefff;
   font-size: 17px;
   padding-left: 5px;
   padding-top: 2px;
+  filter: drop-shadow(0px 5px 4px #00000070);
 }
-.bariand * .attributes .attribute-label {
+.bariand .attributes .attribute-label {
   font-family: Teko, serif;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-.bariand * .attributes .attribute-skill-label {
+.bariand .attributes .attribute-skill-label {
   letter-spacing: 0.3px;
 }
-.bariand * .attributes .attributes-value {
+.bariand .attributes .attributes-value {
   position: relative;
   margin-bottom: 5px;
 }
-.bariand * .attributes .attributes-value .stripe-tooth-body {
+.bariand .attributes .attributes-value .stripe-tooth-body {
   display: flex;
   /* Hide the browser's default checkbox */
   position: absolute;
   top: 0px;
   right: 0px;
 }
-.bariand * .attributes .attributes-value .stripe-tooth-body label {
+.bariand .attributes .attributes-value .stripe-tooth-body label {
   height: 32px;
   width: 11px;
-  background-image: url("assets/teeth/xptooth-white.png");
-  filter: brightness(1) drop-shadow(0px 6px 5px black);
   background-repeat: no-repeat;
   background-size: contain;
   margin-right: 5px;
   transition: filter 0.1s;
-  cursor: pointer;
 }
-.bariand * .attributes .attributes-value .stripe-tooth-body label:last-of-type {
+.bariand .attributes-value .stripe-tooth-body input:checked ~ label {
+  background-image: url("assets/teeth/xptooth-white.png");
+}
+.bariand .stripe-tooth-body.vigor label,
+.bariand .stripe-tooth-body.vigor input:checked + label {
+  background-image: url("assets/teeth/xptooth-vigor.png");
+}
+.bariand .stripe-tooth-body.dexterity label,
+.bariand .stripe-tooth-body.dexterity input:checked + label {
+  background-image: url("assets/teeth/xptooth-dexterity.png");
+}
+.bariand .stripe-tooth-body.intelligence label,
+.bariand .stripe-tooth-body.intelligence input:checked + label {
+  background-image: url("assets/teeth/xptooth-intelligence.png");
+}
+.bariand .stripe-tooth-body.wisdom label,
+.bariand .stripe-tooth-body.wisdom input:checked + label {
+  background-image: url("assets/teeth/xptooth-wisdom.png");
+}
+.bariand .stripe-tooth-body.charisma label,
+.bariand .stripe-tooth-body.charisma input:checked + label {
+  background-image: url("assets/teeth/xptooth-charisma.png");
+}
+.bariand .attributes .attributes-value .stripe-tooth-body label:last-of-type {
   margin-right: 0px;
 }
-.bariand * .attributes .attributes-value .stripe-tooth-body label[for$="-0"] {
+.bariand .attributes .attributes-value .stripe-tooth-body label[for$="-0"] {
   width: auto;
   height: auto;
   background-image: none !important;
   color: #eeefff;
   margin-top: 2px;
 }
-.bariand * .attributes .attributes-value .stripe-tooth-body label[for$="-0"] i {
+.bariand .attributes .attributes-value .stripe-tooth-body label[for$="-0"] i {
   margin-top: 4px;
 }
-.bariand * .attributes .attributes-value .stripe-tooth-body label:hover {
-  filter: brightness(0.8);
-  opacity: 0.9;
-}
-.bariand * .attributes .attributes-value .stripe-tooth-body input {
+.bariand .attributes .attributes-value .stripe-tooth-body input {
   display: none;
 }
-.bariand
-  *
-  .attributes
-  .attributes-value
-  .stripe-tooth-body
-  input:checked
-  ~ label {
-  background-image: url("assets/teeth/xptooth-white.png");
-  filter: brightness(0.4);
-}
-.bariand
-  *
-  .attributes
-  .attributes-value
-  .stripe-tooth-body
-  input:checked
-  + label {
-  filter: brightness(1) drop-shadow(0px 6px 5px black);
-}
-.bariand * .attributes .attributes-container {
+.bariand .attributes .attributes-container {
   display: flex;
   align-items: center;
   margin: 3px 0px;
 }
-.bariand * .attributes .attributes-container label {
+.bariand .attributes .attributes-container label {
   height: 13px;
   width: 13px;
   background-color: #131319;
@@ -397,7 +392,7 @@
   transition: filter 0.1s;
   cursor: pointer;
 }
-.bariand * .attributes .attributes-container label[for$="-0"] {
+.bariand .attributes .attributes-container label[for$="-0"] {
   height: 5px;
   width: 5px;
   align-self: flex-start;
@@ -406,53 +401,209 @@
   background-color: white !important;
   margin-right: 0px;
 }
-.bariand * .attributes .attributes-container label[for$="-1"] {
+.bariand .attributes .attributes-container label[for$="-1"] {
   filter: drop-shadow(0px 0px 2px #00000070);
 }
-.bariand * .attributes .attributes-container label:hover {
+.bariand .attributes .attributes-container label:hover {
   filter: brightness(0.7);
   opacity: 0.7;
 }
-.bariand * .attributes .attributes-container input {
+.bariand .attributes .attributes-container input {
   display: none;
 }
-.bariand * .attributes .attributes-container input:checked ~ label {
+.bariand .attributes .attributes-container input:checked ~ label {
   background-color: #eeefff;
 }
-.bariand * .attributes .attributes-container input:checked + label {
+.bariand .attributes .attributes-container input:checked + label {
   transition: filter 0.1s;
   cursor: pointer;
   background-color: #191813;
 }
-.bariand * .attributes .attributes-container input:checked + label:hover {
+.bariand .attributes .attributes-container input:checked + label:hover {
   filter: brightness(0.7);
   opacity: 0.7;
 }
-.bariand * .attributes .attributes-container * {
+.bariand .attributes .attributes-container * {
   margin-right: 5px;
 }
-.bariand * .attributes .attributes-container.vigor label,
-.bariand * .attributes .attributes-container.vigor input:checked + label {
-  background-color: #dd7057;
+.bariand .attributes .attributes-container.vigor label,
+.bariand .attributes .attributes-container.vigor input:checked + label {
+  background-color: var(--vigor-color);
 }
-.bariand * .attributes .attributes-container.dexterity label,
-.bariand * .attributes .attributes-container.dexterity input:checked + label {
-  background-color: #50a852;
+.bariand .attributes .attributes-container.dexterity label,
+.bariand .attributes .attributes-container.dexterity input:checked + label {
+  background-color: var(--dexterity-color);
 }
-.bariand * .attributes .attributes-container.intelligence label,
-.bariand
-  *
-  .attributes
-  .attributes-container.intelligence
-  input:checked
-  + label {
-  background-color: #b263c2;
+.bariand .attributes .attributes-container.intelligence label,
+.bariand .attributes .attributes-container.intelligence input:checked + label {
+  background-color: var(--intelligence-color);
 }
-.bariand * .attributes .attributes-container.wisdom label,
-.bariand * .attributes .attributes-container.wisdom input:checked + label {
-  background-color: #6266cd;
+.bariand .attributes .attributes-container.wisdom label,
+.bariand .attributes .attributes-container.wisdom input:checked + label {
+  background-color: var(--wisdom-color);
 }
-.bariand * .attributes .attributes-container.charisma label,
-.bariand * .attributes .attributes-container.charisma input:checked + label {
-  background-color: #eaac4e;
+.bariand .attributes .attributes-container.charisma label,
+.bariand .attributes .attributes-container.charisma input:checked + label {
+  background-color: var(--charisma-color);
+}
+
+/* Tabs*/
+.bariand .all-tabs {
+  border: 1px solid #191813a0;
+}
+.bariand .tabs {
+  font-family: Teko, serif;
+  font-size: 19px;
+  line-height: 24px;
+  min-height: 30px;
+  max-height: 30px;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #191813;
+  color: #eeefff;
+  filter: drop-shadow(0px 5px 4px #00000070);
+}
+.bariand .tab-subtitle {
+  padding: 8px 12px;
+  font-size: 110%;
+  background: #00000070;
+  color: #eeefff;
+  filter: drop-shadow(0px 5px 4px #00000070);
+}
+.bariand .tab-content {
+  padding: 8px 12px;
+  height: 100%;
+}
+.bariand a.item {
+  height: 21px;
+  transition: all 0.5s ease;
+  text-shadow: none;
+}
+.bariand a.item:not(:last-of-type) {
+  border-right: 1px solid #ffffff60;
+}
+.bariand .tabs a.item.active {
+  text-shadow: 0 0 3px #ffffff50;
+  letter-spacing: 0.5px;
+  flex-grow: 1;
+}
+.bariand .tabs a.item::before,
+.bariand .tabs a.item::after {
+  content: " • ";
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+.bariand .tabs a.item.active::before {
+  content: "• ";
+  opacity: 1;
+}
+.bariand .tabs a.item.active::after {
+  content: " •";
+  opacity: 1;
+}
+.bariand .tab[data-tab] {
+  display: none;
+  height: 100%;
+}
+.bariand .tab[data-tab].active {
+  display: block;
+}
+.bariand .tab-title {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Generic - items */
+.bariand .item-edit:hover {
+  cursor: pointer;
+}
+
+/* Abilities */
+
+/* Talents */
+.bariand .talent {
+  padding: 8px 0;
+  align-items: center;
+}
+.bariand .talent:not(:last-of-type) {
+  border-bottom: 1px dotted #19181340;
+}
+.bariand .talent-name {
+  width: 18%;
+}
+.bariand .talent-description {
+  font-style: italic;
+  width: 60%;
+  font-size: 90%;
+}
+.bariand .talent .item-control:first-of-type {
+  margin-left: auto;
+}
+
+/* Skill tree */
+.bariand .skill-tree .tab-content {
+  justify-content: space-around;
+}
+.bariand .skill-tree .treeRow {
+  display: flex;
+  margin-bottom: 3px;
+}
+.bariand .skill-tree .treeCell {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.bariand .skill-tree .treeCell.hideSubs div {
+  display: none;
+}
+.bariand .skill-tree .treeCell:not(:first-of-type) {
+  margin-left: -37px;
+}
+.bariand .skill-tree .treeCellShape {
+  transition: all 0.4s ease;
+  width: 0;
+  height: 0;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  transform: scale(1);
+  pointer-events: none;
+}
+.bariand .skill-tree .highlighted .treeCellShape {
+  filter: drop-shadow(0 2px 2px black);
+}
+.bariand .skill-tree .up .treeCellShape {
+  border-bottom: 80px solid #191813;
+}
+.bariand .skill-tree .down .treeCellShape {
+  border-top: 80px solid #191813;
+}
+.bariand .skill-tree .unlockable .treeCellShape {
+  border-bottom-color: #595853;
+  border-top-color: #595853;
+}
+.bariand .skill-tree .unlocked .treeCellShape {
+  border-bottom-color: white;
+  border-top-color: white;
+}
+
+.bariand .skill-tree .treeCellContent {
+  position: absolute;
+  width: 80px;
+  color: #191813;
+  font-size: 11px;
+  padding: 0 10px;
+  text-align: center;
+  z-index: 10;
+}
+.bariand .skill-tree .unlockable .treeCellContent:hover {
+  cursor: pointer;
+}
+.bariand .skill-tree .down .treeCellContent {
+  top: 5px;
+}
+.bariand .skill-tree .up .treeCellContent {
+  bottom: 5px;
+}
+.bariand .skill-tree .unlockable .treeCellContent {
+  color: white;
 }

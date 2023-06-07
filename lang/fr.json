@@ -1,6 +1,6 @@
 {
   "bariand.stat.speed": "Vitesse",
-  "bariand.stat.hp": "PV",
+  "bariand.stat.health": "PV",
   "bariand.stat.adversity": "Adversité",
 
   "bariand.stat.vigor": "Vigueur",
@@ -33,5 +33,7 @@
   "bariand.damageType.cold": "Froid",
   "bariand.damageType.psychic": "Psychique",
   "bariand.damageType.arcane": "Arcaniques",
-  "bariand.damageType.void": "Néant"
+  "bariand.damageType.void": "Néant",
+
+  "bariand.item.delete": "Supprimer"
 }

@@ -9,14 +9,17 @@
       "age": 0,
       "height": 0,
       "weight": 0,
-      "hp": {
+      "health": {
         "current": 12,
         "max": 12,
-        "bonus": 0
+        "bonus": 0,
+        "change": ""
       },
       "mana": {
         "current": 9,
-        "max": 9
+        "max": 9,
+        "bonus": 0,
+        "change": ""
       },
       "adversity": "0",
       "resistance": {
@@ -119,23 +122,48 @@
             }
           }
         }
-      }
+      },
+
+      "unlockedTreeCells": ["53"],
+      "treeTooltip": {
+        "cell": "",
+        "title": "",
+        "description": ""
+      },
+
+      "moreInfo": ""
     }
   },
   "Item": {
-    "types": ["arme", "equipement"],
+    "types": ["ability", "talent", "arme", "equipement"],
     "templates": {
-      "itemDescription": {
+      "description": {
         "description": ""
       }
     },
+    "ability": {
+      "templates": ["description"],
+      "manaCost": 0,
+      "cooldown": 0,
+      "range": 0,
+      "duration": 0,
+      "progression": "",
+      "additionalInfo": ""
+    },
+    "talent": {
+      "templates": ["description"],
+      "type": "",
+      "classes": "",
+      "statsRequired": "",
+      "limitation": ""
+    },
     "arme": {
       "damage": 0,
-      "templates": ["itemDescription"],
+      "templates": ["description"],
       "range": 0
     },
     "equipement": {
-      "templates": ["itemDescription"]
+      "templates": ["description"]
     }
   }
 }
