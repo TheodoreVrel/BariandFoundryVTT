@@ -11,6 +11,11 @@
   "packs": [],
   "languages": [
     {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/fr.json"
+    },
+    {
       "lang": "fr",
       "name": "Français",
       "path": "lang/fr.json"

@@ -1,0 +1,20 @@
+<div class="">
+  <div class="tab-subtitle flex-horizontal gap-5">
+    <div class="talent-name">Talent</div>
+    <div class="talent-description">Description</div>
+  </div>
+  <div class="tab-content flex-vertical">
+    {{#each items as |item i|}}
+    <div class="item talent flex-horizontal gap-5" data-item-id="{{item._id}}">
+      <div class="talent-name item-edit">{{item.name}}</div>
+      <div class="talent-description">{{item.system.description}}</div>
+      <a
+        class="item-control item-delete"
+        title="{{localize 'bariand.item.delete'}}"
+        ><i class="fas fa-x"></i
+      ></a>
+    </div>
+    {{/each}}
+    <button data-type="talent" class="item-create-list">+</button>
+  </div>
+</div>

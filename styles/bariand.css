@@ -1,129 +1,609 @@
-.sheet p {
-  margin: 0;
+@import url("https://fonts.googleapis.com/css2?family=Teko:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poltawski+Nowy&display=swap");
+
+/**************************** General ****************************/
+.bariand {
+  font-family: "Poltawski Nowy", serif;
+  --vigor-color: #dd7057;
+  --dexterity-color: #50a852;
+  --intelligence-color: #b263c2;
+  --wisdom-color: #6266cd;
+  --charisma-color: #eaac4e;
 }
-.sheet input {
+.bariand textarea {
+  font-family: "Poltawski Nowy", serif;
+  border: none;
+  resize: none;
+  transition: all 0.5s ease;
+}
+.bariand textarea:focus {
+  box-shadow: 0 0 1px white;
+}
+.bariand input:focus {
+  box-shadow: none;
+}
+.bariand button:hover,
+.bariand button:focus {
+  box-shadow: 0 0 5px white;
+}
+
+.bariand .w-full {
+  width: 100%;
+}
+.bariand .h-full {
+  height: 100%;
+}
+
+.bariand .flex-horizontal {
+  display: flex;
+  flex-direction: row;
+}
+.bariand .flex-vertical {
+  display: flex;
+  flex-direction: column;
+}
+.bariand .flex-grow {
+  flex-grow: 1;
+}
+.bariand .align-center {
+  align-items: center;
+}
+.bariand .align-start {
+  align-items: flex-start;
+}
+.bariand .align-end {
+  align-items: flex-end;
+}
+.bariand .justify-between {
+  justify-content: space-between;
+}
+.bariand .gap-5 {
+  gap: 5px;
+}
+.bariand .gap-10 {
+  gap: 10px;
+}
+.bariand .gap-20 {
+  gap: 20px;
+}
+.bariand .tab[data-tab] {
+  display: none;
+}
+.bariand .tab[data-tab].active {
+  display: block;
+}
+
+.bariand .input-left-gradient input {
+  background: linear-gradient(90deg, #00000010 45%, transparent 100%);
+}
+.bariand .input-right-gradient input {
+  background: linear-gradient(270deg, #00000010 45%, transparent 100%);
+}
+.bariand .text-center {
   text-align: center;
 }
 
-.sheet .sheet-body {
-  display: flex;
-  flex-direction: column;
-  color: antiquewhite;
-  background-color: #494843;
-  padding-left: 5px;
+/**************************** Actor sheet ****************************/
+.bariand .actor-sheet .header {
+  height: 245px;
+  margin: 0 20px 20px 0;
+  gap: 15px;
 }
-.sheet .all-stats {
-  display: flex;
-  gap: 50px;
-  margin: 20px;
+.bariand .actor-sheet .header input {
+  border: none;
 }
-.sheet .sub-stats {
-  display: flex;
-  flex-direction: column;
+.bariand .actor-sheet .portrait {
+  max-width: 250px;
+  max-height: 245px;
+  width: auto;
+  height: auto;
 }
-.sheet .sub-stats-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: antiquewhite;
-  background-color: black;
-  padding: 6px 12px;
+.bariand .actor-sheet .primary-info {
+  width: 210px;
+  margin-right: 20px;
 }
-.sheet .sub-stats-title p {
-  font-weight: bold;
-  padding-right: 8px;
+.bariand .actor-sheet .primary-info input {
+  border: none;
+  height: 28px;
+  font-size: 18px;
 }
-.sheet .sub-stats-title input {
-  color: antiquewhite;
-  background-color: black;
-  width: 22px;
-  align-self: flex-end;
+.bariand .actor-sheet .primary-info label {
+  font-size: 14px;
 }
-.sheet .stats-grid {
-  display: grid;
-  align-items: center;
-  grid-template-columns: 110px 40px;
-  grid-template-rows: repeat(3, 25px);
-  grid-gap: 2px 0;
-  margin-bottom: 5px;
-  padding: 5px;
-  border: 1px solid black;
-  color: black;
-  background-color: antiquewhite;
+.bariand .actor-sheet .secondary-info {
+  margin-top: 18.5px;
 }
-.sheet .stat {
-  display: inline-block;
-  flex-direction: row;
-  position: flex;
+.bariand .actor-sheet .more-info input {
+  text-align: right;
+  width: 40px;
 }
 
-.sheet .main-stats {
-  display: grid;
-  grid-gap: 20px 0;
-  grid-template-columns: 120px 80px;
-  grid-template-rows: repeat(6, 70px);
+/* Health and mana */
+.bariand .health-container {
+  margin-top: auto;
 }
-.sheet .main-stats .label {
-  display: flex;
-  color: antiquewhite;
-  background-color: black;
+.bariand .mana-container {
+  margin-bottom: 35px;
 }
-.sheet .main-stats p {
-  margin: auto;
-  font-size: 20px;
+.bariand .health-container input,
+.bariand .mana-container input {
+  text-align: center;
+  font-size: 14px;
+  width: 27px;
+  height: 20px;
+  background: transparent;
 }
-.sheet .main-stats .value {
-  display: flex;
-  color: black;
-  border: 1px solid black;
-}
-.sheet .main-stats input {
+.bariand .health,
+.bariand .mana {
   width: 100%;
-  height: 100%;
-  font-size: 20px;
-  background-color: antiquewhite;
+  height: 15px;
+  transform: skewX(350deg);
+  border: 1px solid #000000c0;
+}
+.bariand .progress-bar {
+  width: 100%;
+  border-right: 1px dotted #ffffff30;
+}
+.bariand .progress-bar.tens {
+  width: 100%;
+  border-right: 1px solid #303030c0;
+}
+.bariand .health .progress-bar.filled-bar {
+  background: linear-gradient(0deg, #51d353, #51d35370);
+}
+.bariand .mana .progress-bar.filled-bar {
+  background: linear-gradient(0deg, #7378f9, #7378f970);
+}
+.bariand .progress-bar.empty-bar {
+  background-color: #79787365;
+}
+.bariand .progress-bar.max {
+  border-right: 2px solid #ffffff;
+}
+.bariand .progress-bar.filled-bar.bonus {
+  filter: brightness(1.2);
+}
+.bariand .progress-bar.empty-bar.bonus {
+  filter: brightness(1.6);
+}
+.bariand .resource-buttons * {
+  height: 20px;
+  line-height: 20px;
+  margin: 0;
+}
+.bariand .resource-button {
+  font-size: 12px;
+  font-family: "Poltawski Nowy", serif;
+  width: auto;
+  border: 1px solid #00000050;
+  border-top: 0;
+  border-radius: 0 0 4px 4px;
+  background: #ffffff50;
+  margin: 0;
+}
+.bariand .resource-button input,
+.bariand .resource-button button {
+  font-size: 12px;
+  font-family: "Poltawski Nowy", serif;
+  max-height: 100%;
+  line-height: 7px;
+  border: none;
+  background: transparent;
+}
+.bariand .resource-button input {
+  width: 21px;
+}
+.bariand .resource-button button {
+  width: 10px;
+  padding: 0;
 }
 
-.sheet .talents,
-.sheet .abilities {
+/* Combat section */
+.bariand .combat {
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  gap: 35px;
+  border-top: 2px solid black;
+  margin-bottom: 10px;
+}
+.bariand .adversity {
+  display: flex;
+}
+.bariand .resistance {
+  margin-left: auto;
+}
+.bariand .speed {
+  margin-right: 30px;
+}
+.bariand .black-label {
+  background-color: #191813;
+  color: #eeefff;
+  font-size: 21px;
+  text-align: center;
+  padding: 0px 8px;
+  height: 30px !important;
+  text-transform: capitalize;
+  font-family: Teko, serif;
+  filter: drop-shadow(0px 5px 4px #00000070) !important;
+}
+.bariand .big-teeth-section .big-teeth label {
+  display: flex;
+  height: 50px;
+  width: 17px;
+  background-image: url("assets/teeth/stresstooth-red.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 8px;
+  transition: filter 0.1s;
+  cursor: pointer;
+}
+.bariand .big-teeth-section .big-teeth label:last-of-type {
+  margin-right: 0px;
+}
+.bariand .big-teeth-section .big-teeth label[for$="-0"] {
+  width: auto;
+  height: auto;
+  background-image: none !important;
+  color: #eeefff;
+}
+.bariand .big-teeth-section .big-teeth label[for$="-0"] i {
+  margin-top: 4px;
+}
+.bariand .big-teeth-section .big-teeth label:hover {
+  filter: brightness(0.8);
+  opacity: 0.9;
+}
+.bariand .big-teeth-section .big-teeth input {
+  display: none;
+}
+.bariand .big-teeth-section .big-teeth input:checked ~ label {
+  background-image: url("assets/teeth/stresstooth-halfgrey.png");
+}
+.bariand .big-teeth-section .big-teeth input:checked + label {
+  background-image: url("assets/teeth/stresstooth-red.png");
+}
+
+.bariand .stat-value {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  border-top: 0;
+  background-color: white;
+}
+.bariand .combat-stat-column {
+  margin-top: 5px;
+}
+.bariand .combat-stat-column label {
+  width: 45px;
+}
+.bariand .combat-stat-column input {
+  border: none;
+  width: 28px;
+  text-align: center;
+}
+
+/* Stuff section */
+.bariand .stuff {
+  display: flex;
+  flex-direction: row;
+  padding-top: 15px;
+  border-top: 1px solid #00000055;
+}
+
+/* Attributes */
+.bariand .attributes {
   display: flex;
   flex-direction: column;
-  width: 260px;
+  gap: 5px;
+  min-width: 200px;
+  width: 200px;
 }
-.sheet .talent {
-  margin-bottom: 25px;
-  display: inline-block;
-  flex-direction: row;
-  position: relative;
+.bariand .attributes .stripe {
   background-color: #191813;
-  color: whitesmoke;
-  height: 75px;
+  color: #eeefff;
+  font-size: 17px;
+  padding-left: 5px;
+  padding-top: 2px;
+  filter: drop-shadow(0px 5px 4px #00000070);
 }
-.sheet .ability {
-  margin-bottom: 25px;
-  display: inline-block;
-  flex-direction: row;
+.bariand .attributes .attribute-label {
+  font-family: Teko, serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.bariand .attributes .attribute-skill-label {
+  letter-spacing: 0.3px;
+}
+.bariand .attributes .attributes-value {
   position: relative;
-  background-color: #3c3c3c;
-  color: whitesmoke;
-  height: 105px;
+  margin-bottom: 5px;
+}
+.bariand .attributes .attributes-value .stripe-tooth-body {
+  display: flex;
+  /* Hide the browser's default checkbox */
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.bariand .attributes .attributes-value .stripe-tooth-body label {
+  height: 32px;
+  width: 11px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 5px;
+  transition: filter 0.1s;
+}
+.bariand .attributes-value .stripe-tooth-body input:checked ~ label {
+  background-image: url("assets/teeth/xptooth-white.png");
+}
+.bariand .stripe-tooth-body.vigor label,
+.bariand .stripe-tooth-body.vigor input:checked + label {
+  background-image: url("assets/teeth/xptooth-vigor.png");
+}
+.bariand .stripe-tooth-body.dexterity label,
+.bariand .stripe-tooth-body.dexterity input:checked + label {
+  background-image: url("assets/teeth/xptooth-dexterity.png");
+}
+.bariand .stripe-tooth-body.intelligence label,
+.bariand .stripe-tooth-body.intelligence input:checked + label {
+  background-image: url("assets/teeth/xptooth-intelligence.png");
+}
+.bariand .stripe-tooth-body.wisdom label,
+.bariand .stripe-tooth-body.wisdom input:checked + label {
+  background-image: url("assets/teeth/xptooth-wisdom.png");
+}
+.bariand .stripe-tooth-body.charisma label,
+.bariand .stripe-tooth-body.charisma input:checked + label {
+  background-image: url("assets/teeth/xptooth-charisma.png");
+}
+.bariand .attributes .attributes-value .stripe-tooth-body label:last-of-type {
+  margin-right: 0px;
+}
+.bariand .attributes .attributes-value .stripe-tooth-body label[for$="-0"] {
+  width: auto;
+  height: auto;
+  background-image: none !important;
+  color: #eeefff;
+  margin-top: 2px;
+}
+.bariand .attributes .attributes-value .stripe-tooth-body label[for$="-0"] i {
+  margin-top: 4px;
+}
+.bariand .attributes .attributes-value .stripe-tooth-body input {
+  display: none;
+}
+.bariand .attributes .attributes-container {
+  display: flex;
+  align-items: center;
+  margin: 3px 0px;
+}
+.bariand .attributes .attributes-container label {
+  height: 13px;
+  width: 13px;
+  background-color: #131319;
+  vertical-align: middle;
+  border: 1px solid #191813;
+  border-radius: 24px;
+  transition: filter 0.1s;
+  cursor: pointer;
+}
+.bariand .attributes .attributes-container label[for$="-0"] {
+  height: 5px;
+  width: 5px;
+  align-self: flex-start;
+  border-radius: 24px;
+  background-image: none !important;
+  background-color: white !important;
+  margin-right: 0px;
+}
+.bariand .attributes .attributes-container label[for$="-1"] {
+  filter: drop-shadow(0px 0px 2px #00000070);
+}
+.bariand .attributes .attributes-container label:hover {
+  filter: brightness(0.7);
+  opacity: 0.7;
+}
+.bariand .attributes .attributes-container input {
+  display: none;
+}
+.bariand .attributes .attributes-container input:checked ~ label {
+  background-color: #eeefff;
+}
+.bariand .attributes .attributes-container input:checked + label {
+  transition: filter 0.1s;
+  cursor: pointer;
+  background-color: #191813;
+}
+.bariand .attributes .attributes-container input:checked + label:hover {
+  filter: brightness(0.7);
+  opacity: 0.7;
+}
+.bariand .attributes .attributes-container * {
+  margin-right: 5px;
+}
+.bariand .attributes .attributes-container.vigor label,
+.bariand .attributes .attributes-container.vigor input:checked + label {
+  background-color: var(--vigor-color);
+}
+.bariand .attributes .attributes-container.dexterity label,
+.bariand .attributes .attributes-container.dexterity input:checked + label {
+  background-color: var(--dexterity-color);
+}
+.bariand .attributes .attributes-container.intelligence label,
+.bariand .attributes .attributes-container.intelligence input:checked + label {
+  background-color: var(--intelligence-color);
+}
+.bariand .attributes .attributes-container.wisdom label,
+.bariand .attributes .attributes-container.wisdom input:checked + label {
+  background-color: var(--wisdom-color);
+}
+.bariand .attributes .attributes-container.charisma label,
+.bariand .attributes .attributes-container.charisma input:checked + label {
+  background-color: var(--charisma-color);
 }
 
-.sheet .vig input {
-  background-color: #dd7057;
+/* Tabs*/
+.bariand .all-tabs {
+  border: 1px solid #191813a0;
 }
-.sheet .dex input {
-  background-color: #50a852;
+.bariand .tabs {
+  font-family: Teko, serif;
+  font-size: 19px;
+  line-height: 24px;
+  min-height: 30px;
+  max-height: 30px;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #191813;
+  color: #eeefff;
+  filter: drop-shadow(0px 5px 4px #00000070);
 }
-.sheet .int input {
-  background-color: #b263c2;
+.bariand .tab-subtitle {
+  padding: 8px 12px;
+  font-size: 110%;
+  background: #00000070;
+  color: #eeefff;
+  filter: drop-shadow(0px 5px 4px #00000070);
 }
-.sheet .wis input {
-  background-color: #6266cd;
+.bariand .tab-content {
+  padding: 8px 12px;
+  height: 100%;
 }
-.sheet .cha input {
-  background-color: #eaac4e;
+.bariand a.item {
+  height: 21px;
+  transition: all 0.5s ease;
+  text-shadow: none;
 }
-.sheet .stat input {
-  max-width: 90px;
+.bariand a.item:not(:last-of-type) {
+  border-right: 1px solid #ffffff60;
+}
+.bariand .tabs a.item.active {
+  text-shadow: 0 0 3px #ffffff50;
+  letter-spacing: 0.5px;
+  flex-grow: 1;
+}
+.bariand .tabs a.item::before,
+.bariand .tabs a.item::after {
+  content: " • ";
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+.bariand .tabs a.item.active::before {
+  content: "• ";
+  opacity: 1;
+}
+.bariand .tabs a.item.active::after {
+  content: " •";
+  opacity: 1;
+}
+.bariand .tab[data-tab] {
+  display: none;
+  height: 100%;
+}
+.bariand .tab[data-tab].active {
+  display: block;
+}
+.bariand .tab-title {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Generic - items */
+.bariand .item-edit:hover {
+  cursor: pointer;
+}
+
+/* Abilities */
+
+/* Talents */
+.bariand .talent {
+  padding: 8px 0;
+  align-items: center;
+}
+.bariand .talent:not(:last-of-type) {
+  border-bottom: 1px dotted #19181340;
+}
+.bariand .talent-name {
+  width: 18%;
+}
+.bariand .talent-description {
+  font-style: italic;
+  width: 60%;
+  font-size: 90%;
+}
+.bariand .talent .item-control:first-of-type {
+  margin-left: auto;
+}
+
+/* Skill tree */
+.bariand .skill-tree .tab-content {
+  justify-content: space-around;
+}
+.bariand .skill-tree .treeRow {
+  display: flex;
+  margin-bottom: 3px;
+}
+.bariand .skill-tree .treeCell {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.bariand .skill-tree .treeCell.hideSubs div {
+  display: none;
+}
+.bariand .skill-tree .treeCell:not(:first-of-type) {
+  margin-left: -37px;
+}
+.bariand .skill-tree .treeCellShape {
+  transition: all 0.4s ease;
+  width: 0;
+  height: 0;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  transform: scale(1);
+  pointer-events: none;
+}
+.bariand .skill-tree .highlighted .treeCellShape {
+  filter: drop-shadow(0 2px 2px black);
+}
+.bariand .skill-tree .up .treeCellShape {
+  border-bottom: 80px solid #191813;
+}
+.bariand .skill-tree .down .treeCellShape {
+  border-top: 80px solid #191813;
+}
+.bariand .skill-tree .unlockable .treeCellShape {
+  border-bottom-color: #595853;
+  border-top-color: #595853;
+}
+.bariand .skill-tree .unlocked .treeCellShape {
+  border-bottom-color: white;
+  border-top-color: white;
+}
+
+.bariand .skill-tree .treeCellContent {
+  position: absolute;
+  width: 80px;
+  color: #191813;
+  font-size: 11px;
+  padding: 0 10px;
+  text-align: center;
+  z-index: 10;
+}
+.bariand .skill-tree .unlockable .treeCellContent:hover {
+  cursor: pointer;
+}
+.bariand .skill-tree .down .treeCellContent {
+  top: 5px;
+}
+.bariand .skill-tree .up .treeCellContent {
+  bottom: 5px;
+}
+.bariand .skill-tree .unlockable .treeCellContent {
+  color: white;
 }
