@@ -18,6 +18,5 @@
   ],
   "gridDistance": 5,
   "gridUnits": "m",
-  "primaryTokenAttribute": "wounds",
-  "initiative": "1d20 + @dex"
+  "primaryTokenAttribute": "wounds"
 }

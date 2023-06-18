@@ -152,6 +152,8 @@ Hooks.once("init", async function () {
 
   CONFIG.cells = cells;
 
+  CONFIG.Combat.initiative.formula = "1d20 + @attributes.dexterity.value";
+
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("bariand", BariandActorSheet, {
     types: ["personnage"],
