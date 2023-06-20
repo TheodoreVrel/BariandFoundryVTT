@@ -607,3 +607,6 @@
 .bariand .skill-tree .unlockable .treeCellContent {
   color: white;
 }
+.dice-roll .dice-tooltip {
+  display: block !important;
+}
