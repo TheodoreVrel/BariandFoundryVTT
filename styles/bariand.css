@@ -615,3 +615,12 @@
 .dice-formula {
   display: none;
 }
+
+.part-formula {
+  font-size: 10px;
+}
+
+.roll.die.d6 {
+  color: inherit;
+  filter: sepia(0.5) contrast(0.75) opacity(0.4);
+}
