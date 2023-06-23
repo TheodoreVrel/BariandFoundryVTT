@@ -1,0 +1,58 @@
+<div class="scrollable">
+  <div class="tab-subtitle flex-horizontal gap-5">
+    <div class="object-name">Objets</div>
+    <div class="object-description">Description</div>
+    <button data-type="object" class="item-create">+</button>
+  </div>
+  <div class="tab-content flex-vertical">
+    {{#each items as |item i|}} {{#if (eq item.type "object")}}
+    <div class="item object flex-horizontal gap-5" data-item-id="{{item._id}}">
+      <div class="object-name item-edit">{{item.name}}</div>
+      <div class="object-description">{{item.system.description}}</div>
+      <a
+        class="item-control item-delete"
+        title="{{localize 'bariand.item.delete'}}"
+        ><i class="fas fa-x"></i
+      ></a>
+    </div>
+    {{/if}} {{/each}}
+  </div>
+
+  <div class="tab-subtitle flex-horizontal gap-5">
+    <div class="object-name">Armes</div>
+    <div class="object-description">Description</div>
+    <button data-type="weapon" class="item-create">+</button>
+  </div>
+  <div class="tab-content flex-vertical">
+    {{#each items as |item i|}} {{#if (eq item.type "weapon")}}
+    <div class="item object flex-horizontal gap-5" data-item-id="{{item._id}}">
+      <div class="object-name item-edit">{{item.name}}</div>
+      <div class="object-description">{{item.system.description}}</div>
+      <a
+        class="item-control item-delete"
+        title="{{localize 'bariand.item.delete'}}"
+        ><i class="fas fa-x"></i
+      ></a>
+    </div>
+    {{/if}} {{/each}}
+  </div>
+
+  <div class="tab-subtitle flex-horizontal gap-5">
+    <div class="object-name">Équipements</div>
+    <div class="object-description">Description</div>
+    <button data-type="equipment" class="item-create">+</button>
+  </div>
+  <div class="tab-content flex-vertical">
+    {{#each items as |item i|}} {{#if (eq item.type "equipment")}}
+    <div class="item object flex-horizontal gap-5" data-item-id="{{item._id}}">
+      <div class="object-name item-edit">{{item.name}}</div>
+      <div class="object-description">{{item.system.description}}</div>
+      <a
+        class="item-control item-delete"
+        title="{{localize 'bariand.item.delete'}}"
+        ><i class="fas fa-x"></i
+      ></a>
+    </div>
+    {{/if}} {{/each}}
+  </div>
+</div>

@@ -8,7 +8,20 @@
   "compatibleCoreVersion": "11.300",
   "esmodules": ["bariand.js"],
   "styles": ["styles/bariand.css"],
-  "packs": [],
+  "packs": [
+    {
+      "name": "talents",
+      "label": "Talents",
+      "system": "bariand",
+      "path": "packs/talents.db",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    }
+  ],
   "languages": [
     {
       "lang": "fr",

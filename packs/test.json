@@ -1,0 +1,15 @@
+{
+  "_id": "0IDmKmW3AiaNEBpE",
+  "name": "Test nom",
+  "permission": { "default": 0 },
+  "type": "talent",
+  "system": {
+    "description": "La description",
+    "type": "abc",
+    "classes": "def",
+    "statsRequired": "ghi",
+    "limitation": "jkl"
+  },
+  "sort": 500001,
+  "flags": {}
+}

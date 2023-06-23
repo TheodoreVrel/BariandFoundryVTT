@@ -3,9 +3,9 @@
     "types": ["personnage"],
     "personnage": {
       "level": 1,
+      "portrait": "",
       "country": "a",
       "class": "b",
-      "magic": "c",
       "age": 0,
       "height": 0,
       "weight": 0,
@@ -123,8 +123,35 @@
           }
         }
       },
+      "attune": {
+        "label": "bariand.stat.attune",
+        "value": 0,
+        "amount": 0,
+        "skills": {
+          "1": {
+            "label": "1",
+            "value": 0
+          },
+          "2": {
+            "label": "2",
+            "value": 0
+          },
+          "3": {
+            "label": "3",
+            "value": 0
+          },
+          "4": {
+            "label": "4",
+            "value": 0
+          },
+          "5": {
+            "label": "5",
+            "value": 0
+          }
+        }
+      },
 
-      "unlockedTreeCells": ["53"],
+      "unlockedTreeCells": ["53", "43", "42", "41"],
       "treeTooltip": {
         "cell": "",
         "title": "",
@@ -135,7 +162,7 @@
     }
   },
   "Item": {
-    "types": ["ability", "talent", "arme", "equipement"],
+    "types": ["ability", "talent", "object", "weapon", "equipment"],
     "templates": {
       "description": {
         "description": ""
@@ -157,12 +184,16 @@
       "statsRequired": "",
       "limitation": ""
     },
-    "arme": {
+    "object": {
+      "templates": ["description"],
+      "quantity": 1
+    },
+    "weapon": {
       "damage": 0,
       "templates": ["description"],
       "range": 0
     },
-    "equipement": {
+    "equipment": {
       "templates": ["description"]
     }
   }

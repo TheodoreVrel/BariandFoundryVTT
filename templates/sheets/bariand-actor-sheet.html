@@ -1,13 +1,22 @@
 <form class="{{cssClass}} actor-sheet" autocomplete="off">
   <!-- Header -->
   <section id="character-{{_id}}-header" class="header flex-horizontal">
-    <div class="">
+    <div class="portrait-container">
       <img
         src="{{data.img}}"
         data-edit="img"
         title="{{data.name}}"
         class="portrait"
       />
+      <div class="level">
+        <input
+          type="number"
+          id="character-{{_id}}-level"
+          class="level"
+          name="system.level"
+          value="{{data.system.level}}"
+        />
+      </div>
     </div>
 
     <!-- Primary info (Name, country, class, magic) -->
@@ -42,17 +51,6 @@
           class="class"
           name="system.class"
           value="{{data.system.class}}"
-        />
-      </div>
-
-      <div id="character-{{_id}}-magic-box">
-        <label for="character-{{_id}}-magic">Magie</label>
-        <input
-          type="text"
-          id="character-{{_id}}-magic"
-          class="magic"
-          name="system.magic"
-          value="{{data.system.magic}}"
         />
       </div>
     </div>
@@ -135,28 +133,35 @@
         </div>
         <div class="resource-buttons flex-horizontal gap-5">
           <button
-            class="resource-button edit-resource"
-            data-resource="health"
+            class="resource-button edit-actor-value"
+            data-resource="health.current"
             data-resource-value="-10"
           >
             -10
           </button>
           <button
-            class="resource-button edit-resource"
-            data-resource="health"
+            class="resource-button edit-actor-value"
+            data-resource="health.current"
             data-resource-value="-1"
           >
             -1
           </button>
+          <button
+            class="resource-button edit-actor-value"
+            data-resource="health.current"
+            data-resource-value="1"
+          >
+            +1
+          </button>
+          <button
+            class="resource-button edit-actor-value"
+            data-resource="health.current"
+            data-resource-value="10"
+          >
+            +10
+          </button>
+
           <div class="flex-horizontal resource-button">
-            <button
-              class="edit-resource"
-              data-resource="health"
-              data-resource-value="-{{data.system.health.change}}"
-              data-resource-variable="true"
-            >
-              -
-            </button>
             <input
               id="health-change"
               type="number"
@@ -164,30 +169,22 @@
               value="{{data.system.health.change}}"
             />
             <button
-              class="edit-resource"
-              data-resource="health"
+              class="edit-actor-value"
+              data-resource="health.current"
               data-resource-value="{{data.system.health.change}}"
               data-resource-variable="true"
             >
-              +
+              HP
+            </button>
+            <button
+              class="edit-actor-value"
+              data-resource="health.bonus"
+              data-resource-value="{{data.system.health.change}}"
+              data-resource-variable="true"
+            >
+              Shield
             </button>
           </div>
-          <button
-            class="resource-button edit-resource"
-            data-resource="health"
-            data-resource-value="1"
-          >
-            +1
-          </button>
-          <button
-            class="resource-button edit-resource"
-            data-resource="health"
-            data-resource-value="10"
-          >
-            +10
-          </button>
-
-          <p>Shield</p>
         </div>
       </div>
 
@@ -216,6 +213,36 @@
             class="{{this.class}}"
           ></div>
           {{/progress_bar}}
+        </div>
+        <div class="resource-buttons flex-horizontal gap-5">
+          <button
+            class="resource-button edit-actor-value"
+            data-resource="mana.current"
+            data-resource-value="-10"
+          >
+            -10
+          </button>
+          <button
+            class="resource-button edit-actor-value"
+            data-resource="mana.current"
+            data-resource-value="-1"
+          >
+            -1
+          </button>
+          <button
+            class="resource-button edit-actor-value"
+            data-resource="mana.current"
+            data-resource-value="1"
+          >
+            +1
+          </button>
+          <button
+            class="resource-button edit-actor-value"
+            data-resource="mana.current"
+            data-resource-value="10"
+          >
+            +10
+          </button>
         </div>
       </div>
     </div>
@@ -261,7 +288,7 @@
         </div>
       </div>
 
-      <div class="combat-stat-column flex-vertical gap-10">
+      <div class="combat-stat-column flex-vertical gap-5">
         <div class="flex-horizontal align-center">
           <label for="character-{{_id}}-resistance">Base</label>
           <input
@@ -294,7 +321,7 @@
         </div>
       </div>
 
-      <div class="combat-stat-column flex-vertical gap-10">
+      <div class="combat-stat-column flex-vertical gap-5">
         <div class="flex-horizontal align-center">
           <label for="character-{{_id}}-speed">Base</label>
           <input
@@ -329,7 +356,7 @@
       <nav class="tabs flex-horizontal">
         <a class="item" data-tab="abilities">Compétences</a>
         <a class="item" data-tab="talents">Talents</a>
-        <a class="item" data-tab="loadout">Équipement</a>
+        <a class="item" data-tab="inventory">Inventaire</a>
         <a class="item" data-tab="skill-tree">Arbre</a>
         <a class="item" data-tab="character-notes">Notes</a>
       </nav>
@@ -339,8 +366,9 @@
         class="tab flex-vertical abilities"
         data-tab="abilities"
       >
-        Compétences
+        {{> "systems/bariand/templates/parts/abilities.html" actor=actor}}
       </div>
+
       <div
         id="character-{{_id}}-talents"
         class="tab flex-vertical talents"
@@ -348,13 +376,15 @@
       >
         {{> "systems/bariand/templates/parts/talents.html" actor=actor}}
       </div>
+
       <div
-        id="character-{{_id}}-loadout"
-        class="tab flex-vertical loadout"
-        data-tab="loadout"
+        id="character-{{_id}}-inventory"
+        class="tab flex-vertical inventory"
+        data-tab="inventory"
       >
-        Équipement
+        {{> "systems/bariand/templates/parts/inventory.html" actor=actor}}
       </div>
+
       <div
         id="character-{{_id}}-skill-tree"
         class="tab flex-vertical skill-tree"
@@ -379,6 +409,7 @@
           </div>
         </div>
       </div>
+
       <div
         id="character-{{_id}}-character-notes"
         class="tab flex-vertical character-notes"

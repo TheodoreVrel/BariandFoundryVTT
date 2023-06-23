@@ -8,7 +8,9 @@ export const preloadHandlebarsTemplates = async function () {
   const templatePaths = [
     // Actor Sheet Partials
     "systems/bariand/templates/parts/attributes.html",
+    "systems/bariand/templates/parts/abilities.html",
     "systems/bariand/templates/parts/talents.html",
+    "systems/bariand/templates/parts/inventory.html",
   ];
 
   // Load the template parts
