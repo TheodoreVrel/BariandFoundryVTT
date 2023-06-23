@@ -1,21 +1,34 @@
 // import { getAllItemsByType } from "../../items/bariand-helpers";
 
-const talents = [
-  {
-    _id: "0IDmKmW3AiaNEBpE",
-    name: "Acharné",
-    permission: { default: 0 },
-    system: {
-      description:
-        "Lorsque vous prenez des dégâts, lancez un d4. Réduisez les dégâts que vous prenez par ce chiffre. Au niveau 3, remplacez-le par un d6, et au niveau 6, vous lancez ce d6 avec Avantage.",
-      type: "Combat",
-      classes: "Combattant",
-      statsRequired: "Vigueur 3, Ténacité 2",
-      limitation: "",
-    },
-    flags: {},
-  },
-];
+function fetchByDotOperator(object, value) {
+  return value.split(".").reduce((acc, curr) => acc[curr], object);
+}
+
+const getAllItemsByType = async (item_type, game) => {
+  let list_of_items = [];
+  let game_items = [];
+  let compendium_items = [];
+
+  game_items = game.items
+    .filter((e) => e.type === item_type)
+    .map((e) => {
+      return e.toObject();
+    });
+
+  let pack = game.packs.find((e) => e.metadata.name === item_type);
+  let compendium_content = await pack.getDocuments();
+  compendium_items = compendium_content.map((e) => {
+    return e.toObject();
+  });
+
+  list_of_items = game_items.concat(compendium_items);
+  list_of_items.sort(function (a, b) {
+    let nameA = a.name.toUpperCase();
+    let nameB = b.name.toUpperCase();
+    return nameA.localeCompare(nameB);
+  });
+  return list_of_items;
+};
 
 export default class BariandActorSheet extends ActorSheet {
   get template() {
@@ -48,40 +61,54 @@ export default class BariandActorSheet extends ActorSheet {
   activateListeners(html) {
     super.activateListeners(html);
 
-    html.find(".edit-resource").click(this._onEditResource.bind(this));
+    html.find(".edit-actor-value").click(this._onEditActorValue.bind(this));
     html.find(".item-create").click(this._onItemCreate.bind(this));
     html.find(".item-create-list").click(this._onItemCreateList.bind(this));
     html.find(".item-edit").click(this._onItemEdit.bind(this));
     html.find(".item-delete").click(this._onItemDelete.bind(this));
 
     html
+      .find(".attributes-container label")
+      .click(this._onAttributesChange.bind(this));
+
+    html
       .find(".treeCell:not(.locked) .treeCellContent")
       .hover(this._onShowTreeTooltip.bind(this));
   }
 
-  async _onEditResource(event) {
+  async _onEditActorValue(event) {
     event.preventDefault();
 
     const type = $(event.currentTarget).data("resource");
     const value = $(event.currentTarget).data("resource-value");
     const isVariable = !!$(event.currentTarget).data("resource-variable");
-    const resource = this.actor.system[type];
+    const isResource =
+      type.includes("current") &&
+      (type.includes("health") || type.includes("mana"));
+    const currentValue = fetchByDotOperator(this.actor.system, type);
+    const resource = isResource
+      ? this.actor.system[type.split(".")[0]]
+      : undefined;
+    const maxValue = isResource
+      ? resource.max + (resource.bonus ?? 0)
+      : $(event.currentTarget).data("max-value") ?? 99999;
+
+    const newValue = Math.max(0, Math.min(currentValue + value, maxValue));
 
     if (value !== "" && value !== "-")
       await this.actor.update({
-        [`system.${type}.current`]: Math.max(
-          0,
-          Math.min(
-            resource.current + value,
-            resource.max + (resource.bonus ?? 0)
-          )
-        ),
-        [`system.${type}.bonus`]:
+        [`system.${type}`]: newValue,
+        [`system.health.change`]: isVariable ? "" : resource.change,
+      });
+
+    if (type.includes("health")) {
+      await this.actor.update({
+        [`system.health.bonus`]:
           Number(value) < 0
             ? Math.max(resource.bonus + value, 0)
             : resource.bonus,
-        [`system.${type}.change`]: isVariable ? "" : resource.change,
       });
+    }
   }
 
   async _onItemCreate(event) {
@@ -89,7 +116,7 @@ export default class BariandActorSheet extends ActorSheet {
     let element = event.currentTarget;
 
     let itemData = {
-      name: "New",
+      name: "Nouveau",
       type: $(element).data("type"),
     };
 
@@ -108,7 +135,9 @@ export default class BariandActorSheet extends ActorSheet {
 
     let html = `<div class="items-to-add">`;
 
-    talents.forEach((e) => {
+    const list = await getAllItemsByType("talents", game);
+
+    list.forEach((e) => {
       let addition_price_load = ``;
 
       if (typeof e.system.load !== "undefined") {
@@ -142,7 +171,7 @@ export default class BariandActorSheet extends ActorSheet {
             icon: '<i class="fas fa-check"></i>',
             label: game.i18n.localize("Add"),
             callback: async (html) =>
-              await this.addItemsToSheet(type, $(html).find(".items-to-add")),
+              await this.addItemsToSheet(list, $(html).find(".items-to-add")),
           },
           two: {
             icon: '<i class="fas fa-times"></i>',
@@ -158,11 +187,11 @@ export default class BariandActorSheet extends ActorSheet {
     dialog.render(true);
   }
 
-  async addItemsToSheet(type, el) {
+  async addItemsToSheet(list, el) {
     let items_to_add = [];
 
     el.find("input:checked").each(function () {
-      items_to_add.push(talents.find((e) => e._id === $(this).val()));
+      items_to_add.push(list.find((e) => e._id === $(this).val()));
     });
 
     return this.actor.createEmbeddedDocuments("Item", items_to_add);
@@ -181,13 +210,28 @@ export default class BariandActorSheet extends ActorSheet {
     await this.actor.deleteEmbeddedDocuments("Item", [element.data("itemId")]);
   }
 
+  async _onAttributesChange(event) {
+    let toUpdate = {};
+    const attributes = this.actor.system.attributes;
+
+    for (const attr in attributes) {
+      toUpdate[`system.attributes.${attr}.value`] = Object.entries(
+        attributes[attr].skills
+      )
+        .map((s) => s[1].value > 0)
+        .reduce((prev, current) => prev + current);
+    }
+
+    await this.actor.update(toUpdate);
+  }
+
   async _onShowTreeTooltip(event) {
     const element = event.currentTarget;
     const id = $(element).data("cellid");
 
     await this.actor.update({
       "system.treeTooltip.cell": id,
-      "system.treeTooltip.title": "bonsoir",
+      "system.treeTooltip.title": "bonsoir" + id,
       "system.treeTooltip.description": id,
     });
   }

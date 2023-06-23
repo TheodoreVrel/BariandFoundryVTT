@@ -85,18 +85,38 @@
 
 /**************************** Actor sheet ****************************/
 .bariand .actor-sheet .header {
-  height: 245px;
-  margin: 0 20px 20px 0;
+  height: 220px;
+  margin: 0 20px 7px 0;
   gap: 15px;
 }
 .bariand .actor-sheet .header input {
   border: none;
 }
+.bariand .actor-sheet .portrait-container {
+  position: relative;
+}
 .bariand .actor-sheet .portrait {
   max-width: 250px;
-  max-height: 245px;
+  max-height: 220px;
   width: auto;
   height: auto;
+}
+.bariand .actor-sheet .level {
+  position: absolute;
+  bottom: -1px;
+  right: -2px;
+  width: 30px;
+  height: 30px;
+  font-size: 19px;
+  filter: drop-shadow(-1px -1px 3px #00000080);
+}
+.bariand .actor-sheet .level input {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  border: 1px solid black;
+  background: lightgrey;
+  border-radius: 30%;
 }
 .bariand .actor-sheet .primary-info {
   width: 210px;
@@ -105,7 +125,7 @@
 .bariand .actor-sheet .primary-info input {
   border: none;
   height: 28px;
-  font-size: 18px;
+  font-size: 16px;
 }
 .bariand .actor-sheet .primary-info label {
   font-size: 14px;
@@ -123,7 +143,7 @@
   margin-top: auto;
 }
 .bariand .mana-container {
-  margin-bottom: 35px;
+  margin-bottom: 5px;
 }
 .bariand .health-container input,
 .bariand .mana-container input {
@@ -186,16 +206,15 @@
   font-size: 12px;
   font-family: "Poltawski Nowy", serif;
   max-height: 100%;
-  line-height: 7px;
+  line-height: 20px;
   border: none;
   background: transparent;
 }
 .bariand .resource-button input {
-  width: 21px;
+  width: 25px;
 }
 .bariand .resource-button button {
-  width: 10px;
-  padding: 0;
+  padding: 0 2px;
 }
 
 /* Combat section */
@@ -205,7 +224,7 @@
   flex-direction: row;
   gap: 35px;
   border-top: 2px solid black;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
 }
 .bariand .adversity {
   display: flex;
@@ -291,8 +310,6 @@
 .bariand .stuff {
   display: flex;
   flex-direction: row;
-  padding-top: 15px;
-  border-top: 1px solid #00000055;
 }
 
 /* Attributes */
@@ -304,17 +321,20 @@
   width: 200px;
 }
 .bariand .attributes .stripe {
+  display: flex;
+  align-items: center;
   background-color: #191813;
   color: #eeefff;
   font-size: 17px;
   padding-left: 5px;
-  padding-top: 2px;
   filter: drop-shadow(0px 5px 4px #00000070);
 }
 .bariand .attributes .attribute-label {
   font-family: Teko, serif;
   text-transform: uppercase;
   letter-spacing: 1px;
+  padding-top: 3px;
+  margin-right: 5px;
 }
 .bariand .attributes .attribute-skill-label {
   letter-spacing: 0.3px;
@@ -337,6 +357,9 @@
   background-size: contain;
   margin-right: 5px;
   transition: filter 0.1s;
+}
+.bariand .attributes .attributes-value .stripe-tooth-body.attune label:hover {
+  cursor: pointer;
 }
 .bariand .attributes-value .stripe-tooth-body input:checked ~ label {
   background-image: url("assets/teeth/xptooth-white.png");
@@ -361,6 +384,10 @@
 .bariand .stripe-tooth-body.charisma input:checked + label {
   background-image: url("assets/teeth/xptooth-charisma.png");
 }
+.bariand .stripe-tooth-body.attune label,
+.bariand .stripe-tooth-body.attune input:checked + label {
+  background-image: url("assets/teeth/xptooth-attune.png");
+}
 .bariand .attributes .attributes-value .stripe-tooth-body label:last-of-type {
   margin-right: 0px;
 }
@@ -370,6 +397,14 @@
   background-image: none !important;
   color: #eeefff;
   margin-top: 2px;
+}
+.bariand .attributes .attributes-value .stripe-tooth-body label[for$="-0"] {
+  height: 18px;
+  width: 7px;
+  color: #eeefff;
+  background-image: url("assets/teeth/xptooth-attune.png") !important;
+  margin-top: 0;
+  filter: brightness(0.3);
 }
 .bariand .attributes .attributes-value .stripe-tooth-body label[for$="-0"] i {
   margin-top: 4px;
@@ -412,39 +447,61 @@
   display: none;
 }
 .bariand .attributes .attributes-container input:checked ~ label {
-  background-color: #eeefff;
+  background: #eeefff;
 }
 .bariand .attributes .attributes-container input:checked + label {
   transition: filter 0.1s;
   cursor: pointer;
-  background-color: #191813;
+  background: #191813;
 }
 .bariand .attributes .attributes-container input:checked + label:hover {
   filter: brightness(0.7);
   opacity: 0.7;
 }
 .bariand .attributes .attributes-container * {
+  height: 18px;
   margin-right: 5px;
 }
 .bariand .attributes .attributes-container.vigor label,
 .bariand .attributes .attributes-container.vigor input:checked + label {
-  background-color: var(--vigor-color);
+  background: var(--vigor-color);
 }
 .bariand .attributes .attributes-container.dexterity label,
 .bariand .attributes .attributes-container.dexterity input:checked + label {
-  background-color: var(--dexterity-color);
+  background: var(--dexterity-color);
 }
 .bariand .attributes .attributes-container.intelligence label,
 .bariand .attributes .attributes-container.intelligence input:checked + label {
-  background-color: var(--intelligence-color);
+  background: var(--intelligence-color);
 }
 .bariand .attributes .attributes-container.wisdom label,
 .bariand .attributes .attributes-container.wisdom input:checked + label {
-  background-color: var(--wisdom-color);
+  background: var(--wisdom-color);
 }
 .bariand .attributes .attributes-container.charisma label,
 .bariand .attributes .attributes-container.charisma input:checked + label {
-  background-color: var(--charisma-color);
+  background: var(--charisma-color);
+}
+.bariand .attributes .attributes-container.attune label,
+.bariand .attributes .attributes-container.attune input:checked + label {
+  background: transparent;
+  background-image: url(assets/attune.png);
+  background-position: center;
+  background-size: cover;
+}
+
+.bariand .attributes .attributes-container.attune input[type="text"] {
+  display: inline-flex;
+  width: 140px;
+  background: none;
+  border: none;
+}
+.bariand .attune-button {
+  width: 15px;
+  height: 16px;
+  color: white;
+  line-height: 0;
+  padding: 0;
 }
 
 /* Tabs*/
@@ -463,16 +520,25 @@
   color: #eeefff;
   filter: drop-shadow(0px 5px 4px #00000070);
 }
+.bariand .tab {
+  background-image: url(assets/attune-transparent.png);
+  background-size: cover;
+  background-position: center;
+}
 .bariand .tab-subtitle {
   padding: 8px 12px;
   font-size: 110%;
   background: #00000070;
   color: #eeefff;
   filter: drop-shadow(0px 5px 4px #00000070);
+  border-top: 1px solid #19181380;
 }
 .bariand .tab-content {
   padding: 8px 12px;
   height: 100%;
+}
+.bariand .tab-content:not(div:first-of-type) {
+  padding-bottom: 10px;
 }
 .bariand a.item {
   height: 21px;
@@ -517,6 +583,16 @@
 .bariand .item-edit:hover {
   cursor: pointer;
 }
+.bariand .tab .item-create,
+.bariand .tab .item-create-list {
+  height: 20px;
+  line-height: 0px;
+  width: 28px;
+  margin-left: auto;
+  color: white;
+  font-family: Poltawski Nowy;
+  font-size: 110%;
+}
 
 /* Abilities */
 
@@ -537,6 +613,67 @@
   font-size: 90%;
 }
 .bariand .talent .item-control:first-of-type {
+  margin-left: auto;
+}
+
+.items-to-add {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.items-to-add input[type="radio"],
+.items-to-add input[type="checkbox"] {
+  display: none;
+}
+.items-to-add input[type="radio"]:checked + label,
+.items-to-add input[type="checkbox"]:checked + label {
+  font-weight: bold;
+}
+.items-to-add label::before {
+  content: "• ";
+}
+.items-to-add label:hover {
+  cursor: pointer;
+}
+.items-to-add .tooltip .tooltiptext {
+  visibility: hidden;
+  font-family: "Poltawski Nowy", serif;
+  font-weight: normal;
+  width: 220px;
+  background-color: #191813;
+  color: #eeefff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 9999;
+}
+.items-to-add .tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+/* Inventory */
+.bariand .inventory .scrollable {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+.bariand .object {
+  padding: 8px 0;
+  align-items: center;
+}
+.bariand .object:not(:last-of-type) {
+  border-bottom: 1px dotted #19181340;
+}
+.bariand .object-name {
+  width: 20%;
+}
+.bariand .object-description {
+  font-style: italic;
+  width: 60%;
+  font-size: 90%;
+}
+.bariand .object .item-control:first-of-type {
   margin-left: auto;
 }
 
@@ -595,9 +732,6 @@
   text-align: center;
   z-index: 10;
 }
-.bariand .skill-tree .unlockable .treeCellContent:hover {
-  cursor: pointer;
-}
 .bariand .skill-tree .down .treeCellContent {
   top: 5px;
 }
@@ -606,4 +740,22 @@
 }
 .bariand .skill-tree .unlockable .treeCellContent {
   color: white;
+}
+.bariand .skill-tree .unlockable .treeCellContent:hover {
+  cursor: pointer;
+}
+
+.bariand .treeTooltip {
+  align-self: flex-start;
+  margin-top: 100px;
+  width: 200px;
+  min-height: 150px;
+  background: #00000020;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 0 5px black;
+  padding: 10px;
+}
+
+.bariand .character-notes textarea {
+  border: 1px solid #ffffff90;
 }

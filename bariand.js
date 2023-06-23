@@ -2,7 +2,6 @@
 import { preloadHandlebarsTemplates } from "./modules/bariand-templates.js";
 import BariandActorSheet from "./modules/sheets/bariandActorSheet.js";
 import BariandItemSheet from "./modules/sheets/bariandItemSheet.js";
-// import { getAllItemsByType } from "./modules/bariand-helpers.js";
 
 const cells = {
   "00": {
@@ -228,7 +227,7 @@ Hooks.once("init", async function () {
   });
 
   // Attribute Counter
-  Handlebars.registerHelper("attribute_counter", function (skills, options) {
+  Handlebars.registerHelper("attribute_counter", (skills, options) => {
     let html = options.fn(this);
 
     let count = 0;
@@ -248,7 +247,7 @@ Hooks.once("init", async function () {
     function (playerClass, unlockedCells, displayedCell, block) {
       let html = "";
 
-      console.log(displayedCell);
+      console.log(this.actor.system.attributes);
 
       for (let row = 0; row <= 5; ++row) {
         html += "<div class='treeRow'>";
@@ -277,4 +276,52 @@ Hooks.once("init", async function () {
       return html;
     }
   );
+
+  // Conditional if
+  Handlebars.registerHelper("ifCond", function (v1, operator, v2, options) {
+    switch (operator) {
+      case "==":
+        return Number(v1) == Number(v2)
+          ? options.fn(this)
+          : options.inverse(this);
+      case "===":
+        return Number(v1) === Number(v2)
+          ? options.fn(this)
+          : options.inverse(this);
+      case "!=":
+        return Number(v1) != Number(v2)
+          ? options.fn(this)
+          : options.inverse(this);
+      case "!==":
+        return Number(v1) !== Number(v2)
+          ? options.fn(this)
+          : options.inverse(this);
+      case "<":
+        return Number(v1) < Number(v2)
+          ? options.fn(this)
+          : options.inverse(this);
+      case "<=":
+        return Number(v1) <= Number(v2)
+          ? options.fn(this)
+          : options.inverse(this);
+      case ">":
+        return Number(v1) > Number(v2)
+          ? options.fn(this)
+          : options.inverse(this);
+      case ">=":
+        return Number(v1) >= Number(v2)
+          ? options.fn(this)
+          : options.inverse(this);
+      case "&&":
+        return Number(v1) && Number(v2)
+          ? options.fn(this)
+          : options.inverse(this);
+      case "||":
+        return Number(v1) || Number(v2)
+          ? options.fn(this)
+          : options.inverse(this);
+      default:
+        return options.inverse(this);
+    }
+  });
 });
