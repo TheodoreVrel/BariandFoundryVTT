@@ -4,8 +4,8 @@
   "description": "Un système perso",
   "author": "Ted",
   "version": 0.01,
-  "minimumCoreVersion": "10.291",
-  "compatibleCoreVersion": "10.291",
+  "minimumCoreVersion": "11.300",
+  "compatibleCoreVersion": "11.300",
   "esmodules": ["bariand.js"],
   "styles": ["styles/bariand.css"],
   "packs": [
@@ -24,11 +24,6 @@
   ],
   "languages": [
     {
-      "lang": "en",
-      "name": "English",
-      "path": "lang/fr.json"
-    },
-    {
       "lang": "fr",
       "name": "Français",
       "path": "lang/fr.json"
@@ -36,6 +31,5 @@
   ],
   "gridDistance": 5,
   "gridUnits": "m",
-  "primaryTokenAttribute": "wounds",
-  "initiative": "1d20 + @dex"
+  "primaryTokenAttribute": "wounds"
 }
